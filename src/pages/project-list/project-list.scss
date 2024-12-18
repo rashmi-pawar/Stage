@@ -1,0 +1,21 @@
+page-project-list {
+  ion-card{
+    border-radius: 10px !important;
+    padding: 7pt;
+  }
+  .card{
+    margin: 0;
+    width: 100%;
+  }
+  .user-img{
+    height: 23pt;width: 23pt;object-fit: cover;margin: 0;
+  }
+  .yello-text{
+    color: #E2CB01;
+    padding: 3pt;
+  }
+  .green-text{
+    color: green;
+    padding: 3pt;
+  }
+}

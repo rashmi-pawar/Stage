@@ -1,0 +1,4 @@
+<div class="segment-div row" text-center margin-top margin-left margin-right>
+  <div (click)="selectLeft()" class="left small-text" [ngClass]="!isLeftSelected?'selected-left':''" col-6>{{leftTitle}}</div>
+  <div (click)="selectRight()" class="right small-text" [ngClass]="isLeftSelected?'selected-left':''" col-6>{{rightTitle}}</div>
+</div>

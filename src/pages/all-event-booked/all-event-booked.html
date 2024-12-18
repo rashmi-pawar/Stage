@@ -1,0 +1,61 @@
+<!--
+  Generated template for the MybookingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end (click)="openNotification()">
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <div>
+    <ion-list>
+      <div *ngIf="isListEmpty" text-center margin-top padding class="bold-font big-text">No record are available</div>
+      <div *ngIf="!isListEmpty">
+        <!-- <div class="bold-font big-text">Space List</div> -->
+        <div margin-top *ngFor="let item of projectList">
+          <ion-item no-lines no-padding class="card-item" (click)="getAllData(item)">
+            <div item-start class="card-div">
+              <div text-wrap class="bold-font smaller-text">{{item.name}}
+              </div>
+
+              <div style="margin-top: 5pt" text-wrap class="bold-font smaller-text text-grey ">User Name : {{item.first_name}} {{item.last_name}}</div>
+              <div style="margin-top: 5pt" text-wrap class="bold-font smaller-text text-grey ">Booking ID : {{item.booking_ref}}</div>
+              <div style="margin-top: 5pt" text-wrap class="text-grey smaller-text">
+                Amount : ${{item.price}}
+              </div>
+              <ion-item item-start style="min-height: 1rem" no-padding no-lines class="smaller-text">
+                <div>
+                  <span class="left-margin">Number Of Ticket : {{item.no_of_ticket}}</span>
+                </div>
+              </ion-item>
+            </div>
+            <span class="right-align normal-font">
+              <img style="height:90px;width:90px;"
+              [src]="item.qr_code_img&&item.qr_code_img!==''?'https://alphawizztest.tk/Stage/uploads/qrcode/'+item.qr_code_img:'https://alphawizztest.tk/Stage/uploads/qrcode/16tic6JAOUYF.png'">
+            </span> 
+          </ion-item>
+        </div>
+        <!-- <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll> -->
+      </div>
+    </ion-list>
+  </div>
+
+</ion-content>

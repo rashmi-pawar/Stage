@@ -1,0 +1,230 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end (click)="openNotification()">
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div margin>
+    <ion-searchbar (click)="gotoSearchTab()" no-padding class="small-text"></ion-searchbar>
+  </div>
+
+  <ion-slides style="height: 205px;">
+    <ion-slide *ngFor="let item of bannerDetail">
+      <a href="{{ item.url}}">
+        <img [src]="item.image&&item.image!==''?item.image:'assets/img/banner.png'" style="width: 100%;height: 205px;">
+      </a>
+      <div class="heading">{{ item.title}}</div>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-item (click)="openAllCategories(categoryData)" margin-top no-lines>
+    <div class="medium-text bold-font">Top Categories</div>
+    <div item-right class="small-text text-pink">See All<span margin-left>
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </span></div>
+  </ion-item>
+
+  <div>
+    <ion-slides slidesPerView="4.5">
+      <ion-slide *ngFor="let item of categoryData" (click)="openCategory(item)">
+        <img class="slide-img" [src]="item.image&&item.image!==''?item.image:'assets/img/slide1.png'">
+        <div text-center class="text-black small-text bold-font">{{item.title}}</div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <ion-item (click)="openAllProjects(projectList)" margin-top no-lines>
+    <div class="medium-text bold-font">Projects</div>
+    <div item-right class="small-text text-pink">See All<span margin-left>
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </span></div>
+  </ion-item>
+  <div>
+    <ion-slides slidesPerView="2.8" *ngIf="projectList!==''">
+      <ion-slide *ngFor="let item of projectList">
+        <ion-card (click)="openProjectInner(item)">
+          <div style="padding: 8px" text-left>
+            <div class="project-title smallest-text bold-font">{{item.title}}</div>
+            <div class="description-text smallest-text text-grey">{{item.description}}</div>
+            <!--<div *ngIf="item.status=='In Progress'" class="smaller-text bold-font text-yellow">IN PROGRESS</div>
+            <div *ngIf="item.status=='Completed'" class="smaller-text bold-font text-green">COMPLETED</div>-->
+            <div class="row" margin-top>
+              <img class="small-user"
+                [src]="item.profile_pic&&item.profile_pic!==''?item.profile_pic:'assets/img/user_default.png'">
+              <span *ngIf="item.first_name!=''" style="margin-top: 6px; margin-left: 5px"
+                class="smallest-text">{{item.first_name}}
+                {{item.last_name}}</span>
+              <span *ngIf="item.first_name==''" style="margin-top: 6px; margin-left: 5px;white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;width:72%;"
+                class="smallest-text">{{item.email}}</span>
+            </div>
+          </div>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div margin class="medium-text bold-font">Upcoming Events</div>
+  <div margin>
+    <ion-slides slidesPerView="6.5">
+      <ion-slide *ngFor="let day of weekList;let i = index">
+        <div class="smallest-text" (click)="selectDay(day,i)" [ngClass]="day.isSelected?'todayDate':''">{{day.name}}
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div>
+    <ion-slides slidesPerView="2.1"  *ngIf="eventData!=='' || !isListEmpty">
+      <ion-slide *ngFor="let item of eventList">
+        <ion-card no-padding style="border-radius: 10px">
+          <ion-item no-padding>
+            <img class="event-banner" item-left no-margin
+              [src]="item.attachment && item.attachment !=='' && item.attachment !=='http://15.206.103.57/Stage//'?item.attachment:'assets/img/banner.png'">
+            <div>
+              <div text-wrap class="smallest-text bold-font">{{item.event_name}}</div>
+              <div>
+                <ion-icon class="smaller-text text-pink bold-font" name="ios-clock-outline"></ion-icon><span
+                  style="margin-left: 5px" class="smallest-text">{{item.event_time}}</span>
+              </div>
+              <div>
+                <ion-icon class="smaller-text text-pink bold-font" name="pin"></ion-icon><span style="margin-left: 5px"
+                  class="smallest-text">{{item.event_location}}</span>
+              </div>
+            </div>
+          </ion-item>
+          <button class="smaller-text" (click)="openCompleteEventPage(item)" small no-margin ion-button full>View Detail</button>
+        </ion-card>
+      </ion-slide>
+      <ion-slide *ngFor="let item of eventData">
+        <ion-card (click)="eventDetail(item)" no-padding style="border-radius: 10px">
+          <ion-item no-padding>
+            <img class="event-banner" item-left no-margin
+              [src]="item.attachment&&item.attachment!==''?'https://alphawizztest.tk/Stage/'+item.attachment:'assets/img/banner.png'">
+            <div>
+              <div text-wrap class="smallest-text bold-font">{{item.event_name}}</div>
+              <div>
+                <ion-icon class="smaller-text text-pink bold-font" name="ios-clock-outline"></ion-icon><span
+                  style="margin-left: 5px" class="smallest-text">{{item.event_time}}</span>
+              </div>
+              <div>
+                <ion-icon class="smaller-text text-pink bold-font" name="pin"></ion-icon><span style="margin-left: 5px"
+                  class="smallest-text">{{item.event_location}}</span>
+              </div>
+            </div>
+          </ion-item>
+          <button class="smaller-text" small no-margin ion-button full>Book Ticket</button>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  
+
+  <div margin class="medium-text bold-font">Space For Rent</div>
+  <div>
+    <ion-slides slidesPerView="2.2" *ngIf="spacedata!=='' || !isListEmptySpace">
+      <ion-slide *ngFor="let item of spaceList">
+        <ion-card no-padding style="border-radius: 10px">
+          <img class="rent-banner"
+            [src]="item.attachment&&item.attachment!==''?item.attachment:'assets/img/rent-banner.png'">
+          <div text-left style="margin: 5px">
+            <div class="smallest-text bold-font">{{item.space_name}}</div>
+            <div class="smallest-text text-grey">{{item.description}} </div>
+          </div>
+          <div text-right>
+            <button (click)="openSpaceDetailPage(item)" ion-button small clear class="smallest-text">
+              View Details<ion-icon style="margin-left: 5px" name="ios-arrow-forward"></ion-icon>
+            </button>
+          </div>
+        </ion-card>
+      </ion-slide>
+      <ion-slide *ngFor="let item of spacedata">
+        <ion-card no-padding style="border-radius: 10px">
+          <img class="rent-banner"
+            [src]="item.attachment&&item.attachment!==''?item.attachment:'assets/img/rent-banner.png'">
+          <div text-left style="margin: 5px">
+            <div class="smallest-text bold-font">{{item.space_name}}</div>
+            <div class="smallest-text text-grey">{{item.description}} </div>
+          </div>
+          <div text-right>
+            <button (click)="spaceDetail(item)" ion-button small clear class="smallest-text">
+              View Details<ion-icon style="margin-left: 5px" name="ios-arrow-forward"></ion-icon>
+            </button>
+          </div>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div margin class="medium-text bold-font">Equipment For Rent</div>
+  <div  *ngIf="equdata!=='' || !isListEmptyEquipments">
+    <ion-slides slidesPerView="2.2">
+      <ion-slide *ngFor="let item of equipList">
+        <ion-card no-padding style="border-radius: 10px">
+          <img class="rent-banner"
+            [src]="item.attachment&&item.attachment!==''?item.attachment:'assets/img/equipment-banner.png'">
+          <div style="margin: 5px">
+            <div text-left class="smallest-text bold-font">{{item.equipment_name}}</div>
+            <div class="row text-grey smallest-text">
+              <div col-5 text-left>
+                <div>Per Hours</div>
+                <div>Per Day</div>
+                <div>Per Month</div>
+              </div>
+              <div col-6 text-right>
+                <div>${{item.rate_per_hour}}</div>
+                <div>${{item.rate_per_day}}</div>
+                <div>${{item.rate_per_month}}</div>
+              </div>
+              <div col-1></div>
+            </div>
+          </div>
+          <div text-right>
+            <button (click)="equipmentDetailOwner(item)" ion-button small clear class="smallest-text">
+              View Details<ion-icon style="margin-left: 5px" name="ios-arrow-forward"></ion-icon>
+            </button>
+          </div>
+        </ion-card>
+      </ion-slide>
+      <ion-slide *ngFor="let item of equdata">
+        <ion-card no-padding style="border-radius: 10px">
+          <img class="rent-banner"
+            [src]="item.attachment&&item.attachment!==''?item.attachment:'assets/img/equipment-banner.png'">
+          <div style="margin: 5px">
+            <div text-left class="smallest-text bold-font">{{item.equipment_name}}</div>
+            <div class="row text-grey smallest-text">
+              <div col-5 text-left>
+                <div>Per Hours</div>
+                <div>Per Day</div>
+                <div>Per Month</div>
+              </div>
+              <div col-6 text-right>
+                <div>${{item.rate_per_hour}}</div>
+                <div>${{item.rate_per_day}}</div>
+                <div>${{item.rate_per_month}}</div>
+              </div>
+              <div col-1></div>
+            </div>
+          </div>
+          <div text-right>
+            <button (click)="equipmentDetail(item)" ion-button small clear class="smallest-text">
+              View Details<ion-icon style="margin-left: 5px" name="ios-arrow-forward"></ion-icon>
+            </button>
+          </div>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+</ion-content>

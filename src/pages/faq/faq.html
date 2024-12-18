@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end>
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div margin *ngIf="!isListEmpty">
+    <div text-center class="bold-font big-text">Frequently Asked Questions</div>
+    <div text-wrap margin-top text-center class="set-line-height small-text text-grey">Lorem ipsum is simply dummy text printing lorem ispum been the industry's standard dummy text ever since the 1500s, when an unknown</div>
+    <div class="top-margin saperator"></div>
+    <div *ngFor="let item of feqlist">
+      <ion-item no-lines no-padding (click)="item.isOpen = !item.isOpen">
+        <div class="bold-font small-text">{{item.question}}</div>
+        <ion-icon item-right name="{{item.isOpen?'ios-arrow-down':'ios-arrow-down'}}"></ion-icon>
+      </ion-item>
+      <div *ngIf="item.isOpen" text-wrap padding-right margin-bottom class="set-line-height small-text text-grey">{{item.answer}}</div>
+      <div class="saperator"></div>
+    </div>
+  </div>
+  <div *ngIf="isListEmpty" text-center>No Record Found</div>
+</ion-content>

@@ -1,0 +1,81 @@
+<ion-content>
+  <ion-icon (click)="back()" class="back-icon text-black" name="ios-arrow-back"></ion-icon>
+  <img class="banner" [src]="eventDetails.attachment && eventDetails.attachment!==''?eventDetails.attachment:'assets/img/banner.png'">
+  <div padding>
+    <div class="bold-font medium-text">{{eventDetails.event_name}}</div>
+    <button ion-button style="float: right;" (click)="viewAllDetail(eventDetails)">View Detail</button>
+    <div margin-top class="small-text text-grey">{{eventDetails.description}}</div>
+    <div padding-top margin-top class="small-text text-grey">Time<span class="right-align normal-font">{{eventDetails.event_time}}</span></div>
+    <div margin-top class="small-text text-grey">Start Date<span class="right-align normal-font">{{eventDetails.start_date | date: "dd-MMM-yyyy "}}</span></div>
+    <div margin-top class="small-text text-grey">End Date<span class="right-align normal-font">{{eventDetails.end_date | date: "dd-MMM-yyyy "}}</span></div>
+
+    <div margin-top padding-top class="medium-text">Ticket Price</div>
+    <div margin-top class="bold-font medium-text">General <span class="right-align normal-font">${{eventDetails.general_ticket_price}}</span></div>
+    <div margin-top class="bold-font medium-text">Business <span class="right-align normal-font">${{eventDetails.business_ticket_price}}</span></div>
+    <div margin-top class="bold-font medium-text">Gold <span class="right-align normal-font">${{eventDetails.gold_ticket_price}}</span></div>
+    <div margin-top class="bold-font medium-text">Silver <span class="right-align normal-font">${{eventDetails.silver_ticket_price}}</span></div>
+
+    <div margin-top padding-top class="medium-text">Event Organizer Details</div>
+    <div margin-top class="small-text text-grey">Full Name<span class="right-align">{{eventDetails.first_name+' '+eventDetails.last_name}}</span></div>
+    <div margin-top class="small-text text-grey">Mobile Number<span class="right-align normal-font">{{eventDetails.mobile}}</span></div>
+    <div margin-top class="small-text text-grey">Email<span class="right-align">{{eventDetails.email}}</span></div>
+
+    <ion-item no-lines no-padding margin-top padding-top>
+      <div item-left class="medium-text bold-font">Total Ticket For Sale</div>
+      <ion-item style="margin: 0" item-right class="right-align normal-font">
+        <img item-right class="ticket" src="assets/img/ticket-money.png">
+        <div item-right style="margin: 0" class="normal-font">{{(eventDetails.no_of_ticket_sale*1) + (eventDetails.ticket_saled*1)}}</div>
+      </ion-item>
+    </ion-item>
+    <ion-item no-lines no-padding padding-top>
+      <div item-left class="medium-text bold-font">Total Remaining Ticket For Sale</div>
+      <ion-item style="margin: 0" item-right class="right-align normal-font">
+        <img item-right class="ticket" src="assets/img/ticket-money.png">
+        <div item-right style="margin: 0" class="normal-font">{{eventDetails.no_of_ticket_sale}}</div>
+      </ion-item>
+    </ion-item>
+    <ion-item no-lines no-padding padding-top>
+      <div item-left class="medium-text bold-font">Total No. Of Ticket Sale</div>
+      <ion-item style="margin: 0" item-right class="right-align normal-font">
+        <div item-right style="margin: 0" class="normal-font">{{eventDetails.ticket_saled}}</div>
+      </ion-item>
+    </ion-item>
+    <ion-item margin-top text-center no-lines>
+      <ion-icon class="check" name="md-checkmark-circle-outline"></ion-icon>
+      <div style="color: green" class="small-text bold-font">Event Successfully</div>
+    </ion-item>
+  </div>
+  <!--<div padding>
+    <div class="bold-font medium-text">PRINTING TYPESET LOREM IPSUM IS AND INDUSTRY IS AND INDUSTRY.</div>
+    <div margin-top class="small-text text-grey">What is lorem ipsum? lorem ipsum is simply dummy text of the printing
+      lorem ipsum is simply dummy text of the printing.</div>
+    <div padding-top margin-top class="small-text text-grey">Time<span class="right-align normal-font">7:30 PM</span></div>
+    <div margin-top class="small-text text-grey">Start Date<span class="right-align normal-font">14-Aug-2020</span></div>
+    <div margin-top class="small-text text-grey">End Date<span class="right-align normal-font">30-Aug-2020</span></div>
+
+    <div margin-top padding-top class="medium-text">Ticket Price</div>
+    <div margin-top class="bold-font medium-text">General <span class="right-align normal-font">$100</span></div>
+    <div margin-top class="bold-font medium-text">Business <span class="right-align normal-font">$150</span></div>
+    <div margin-top class="bold-font medium-text">Gold <span class="right-align normal-font">$180</span></div>
+    <div margin-top class="bold-font medium-text">Silver <span class="right-align normal-font">$160</span></div>
+
+    <div margin-top padding-top class="medium-text">Event Organizer Details</div>
+    <div margin-top class="small-text text-grey">Full Name<span class="right-align">Name Here</span></div>
+    <div margin-top class="small-text text-grey">Mobile Number<span class="right-align normal-font">9977757575</span></div>
+    <div margin-top class="small-text text-grey">Email<span class="right-align">dummy@gmail.com</span></div>
+
+    <ion-item no-lines no-padding margin-top padding-top>
+      <div item-left class="medium-text bold-font">Total Ticket Sale</div>
+      <ion-item style="margin: 0" item-right class="right-align normal-font">
+        <img item-right class="ticket" src="assets/img/ticket-money.png">
+        <div item-right style="margin: 0" class="normal-font">147</div>
+      </ion-item>
+    </ion-item>
+
+    <ion-item margin-top text-center no-lines>
+      <ion-icon class="check" name="md-checkmark-circle-outline"></ion-icon>
+      <div style="color: green" class="small-text bold-font">Event Successfully</div>
+    </ion-item>
+  </div>-->
+
+</ion-content>

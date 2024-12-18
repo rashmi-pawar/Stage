@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end>
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div margin>
+    <div text-center class="bold-font big-text">Contact With Us</div>
+    <div text-wrap margin-top text-center class="set-line-height small-text text-grey">Lorem ipsum is simply dummy text printing lorem ispum been the industry's standard dummy text ever since the 1500s, when an unknown</div>
+
+    <div padding class="div-top-margin">
+      <input [(ngModel)]="name" type="text" class="full-input input-line medium-text" placeholder="Name">
+      <input [(ngModel)]="email" readonly type="email" class="full-input input-line medium-text" placeholder="Email">
+      <textarea [(ngModel)]="message" class="full-input input-line medium-text" placeholder="Message" rows="3"></textarea>
+    </div>
+    <div class="btn-div" text-center>
+      <button (click)="send()" ion-button full round class="medium-text">Send</button>
+    </div>
+  </div>
+</ion-content>

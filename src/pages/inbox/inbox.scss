@@ -1,0 +1,15 @@
+page-inbox {
+  .green-dot{
+    position: absolute;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background: green;
+    left: 48pt;
+    top: 15pt;
+  }
+  .item ion-avatar ion-img, .item ion-avatar img{
+    height: 40pt;
+    width: 40pt;
+  }
+}

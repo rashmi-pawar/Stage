@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+    <!--<ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>-->
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end>
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div padding>
+    <div class="header-text bold-font medium-text">All Categories</div>
+    <div class="row" margin-top>
+      <div col-6 class="cate-div" *ngFor="let item of catdata" (click)="openCategory(item)">
+        <img class="cate-img" [src]="item.image&&item.image!==''?item.image:'assets/imgs/fashion.png'">
+        <div class="cate-name">
+          <div class="small-text bold-font text-white">{{item.title}}</div>
+          <div style="margin-top: 3pt" class="smaller-text text-white">Tags</div>
+        </div>
+      </div>
+    </div>
+    <div margin-top class="header-text bold-font medium-text" *ngIf="new_test!=''">Recently Viewed</div>
+    <div margin-left>
+      <ion-slides slidesPerView="2.8">
+        <ion-slide *ngFor="let item of new_test">
+          <ion-card no-padding>
+            <img class="slider-cate-img" [src]="item.categoryImage&&item.categoryImage!==''?item.categoryImage:'assets/imgs/music.png'">
+            <div text-center class="smaller-text bold-font slider-cate-name">{{item.name}}</div>
+          </ion-card>
+        </ion-slide>
+        <!-- <ion-slide>
+          <ion-card no-padding>
+            <img class="slider-cate-img" src="assets/imgs/fashion.png">
+            <div text-center class="smaller-text bold-font slider-cate-name">Fashion</div>
+          </ion-card>
+        </ion-slide>
+        <ion-slide>
+          <ion-card no-padding>
+            <img class="slider-cate-img" src="assets/imgs/show.png">
+            <div text-center class="smaller-text bold-font slider-cate-name">Shows</div>
+          </ion-card>
+        </ion-slide> -->
+      </ion-slides> 
+    </div>
+  </div>
+
+</ion-content>

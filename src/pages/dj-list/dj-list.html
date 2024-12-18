@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end>
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div padding-left padding-right margin-bottom>
+    <round-segment (output)="selectSegment($event)" leftTitle="Users" rightTitle="Projects"></round-segment>
+  </div>
+
+  <div *ngIf="isUserSelected">
+  <div *ngIf="isProjectListEmpty" text-center margin-top padding class="bold-font big-text">No Data are available</div>
+  <div *ngIf="!isProjectListEmpty">
+    <div class="bold-font big-text">{{catdata.title}} List</div>
+    <div margin-top *ngFor="let item of projectData">
+      <ion-card (click)="openHirePage(item)">
+        <ion-item no-lines no-padding>
+          <img item-left class="user-img" [src]="item.profile_pic && item.profile_pic !=='' && item.profile_pic !=='http://15.206.103.57/Stage//'?item.profile_pic:'assets/img/user_default.png'">
+          <div class="small-text">{{item.first_name}} {{item.lastname}}</div>
+          <div class="small-text text-grey">{{catdata.title}}</div>
+        </ion-item>
+        <div text-wrap class="bold-font small-text">{{item.title}}.</div>
+        <div style="margin-top: 5pt" text-wrap class="text-grey small-text">
+          P{{item.description}}
+          <!-- <span class="text-black" style="float: right;margin: 5px">Per day $ 150</span> -->
+        </div>
+      </ion-card>
+    </div>
+  </div>
+  </div>
+
+  <div *ngIf="!isUserSelected">
+    <div *ngIf="isUserListEmpty" text-center margin-top padding class="bold-font big-text">No Data are available</div>
+    <div *ngFor="let item of userDataList">
+      <div padding (click)="goHire(item)">
+        <ion-item no-lines>
+          <img class="freelancer-img" item-left [src]="item.profile_pic && item.profile_pic !=='' && item.profile_pic !=='http://15.206.103.57/Stage//'?item.profile_pic:'assets/img/user_default.png'">
+          <div item-start>
+            <div class="small-text bold-font" *ngIf="item.first_name!=''">{{ item.first_name }} {{ item.last_name }}</div>
+            <div class="small-text bold-font" *ngIf="item.first_name==''">{{ item.name }}</div>
+            <div style="margin-top: 5px" class="text-pink normal-font bold-font smaller-text" *ngIf="item.hourly_rate_from!==''">{{ item.hourly_rate_from }}$-{{ item.hourly_rate_to }}$/Hour</div>
+            <div style="margin-top: 5px" class="text-pink normal-font bold-font smaller-text" *ngIf="item.hourly_rate_from==''">0.00$/Hour</div>
+          </div>
+          <ion-icon item-right name="ios-arrow-forward"></ion-icon>
+        </ion-item>
+        <div class="row" style="margin-left: 45pt;margin-top: -3pt">
+          <span class="rating-count smaller-text" *ngIf="item.avg_rating==''">0</span>
+          <span class="rating-count smaller-text" *ngIf="item.avg_rating!=''">{{ item.avg_rating }}</span>
+          <span style="margin-left: 5px">
+            <ionic3-star-rating *ngIf="item.avg_rating==''" activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#F29529"
+              defaultColor="#E0E0E0" readonly="true" rating="0" fontSize="32px">
+            </ionic3-star-rating>
+            <ionic3-star-rating *ngIf="item.avg_rating!=''" activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#F29529"
+              defaultColor="#E0E0E0" readonly="true" rating="{{ item.avg_rating }}" fontSize="32px">
+            </ionic3-star-rating>
+          </span>
+          <span class="smaller-text text-grey normal-font" style="padding: 5pt">[{{ item.total_review }} reviews]</span>
+        </div>
+      </div>
+      <div class="saperator"></div>
+    </div>
+  </div>
+</ion-content>

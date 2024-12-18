@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end>
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div padding>
+    <div class="bold-font medium-text">Cart List</div>
+    <ion-item class="item-cart" no-lines no-padding>
+      <img item-left class="cart-img" src="assets/img/freelancer-sub1.png">
+      <div margin-top text-wrap class="small-text bold-font">printing and typesetting industry is lorem ipsum industry</div>
+      <div style="margin-top: 5pt" class="small-text normal-font bold-font">$120</div>
+      <ion-item no-lines>
+        <div class="box" item-right>
+          <button class="plus-minus text-pink" ion-button clear>-</button>
+          <span><button class="plus-minus text-pink" ion-button clear>1</button></span>
+          <span><button class="plus-minus text-pink" ion-button clear>+</button></span>
+        </div>
+      </ion-item>
+    </ion-item>
+  </div>
+  <div class="saperator"></div>
+  <div padding-left padding-right padding-bottom>
+    <ion-item style="margin-top: 5pt" no-lines no-padding>
+      <img item-left class="cart-img" src="assets/img/freelancer-sub2.png">
+      <div margin-top text-wrap class="small-text bold-font">printing and typesetting industry is lorem ipsum industry</div>
+      <div style="margin-top: 5pt" class="small-text normal-font bold-font">$120</div>
+      <ion-item no-lines>
+        <div class="box" item-right>
+          <button class="plus-minus text-pink" ion-button clear>-</button>
+          <span><button class="plus-minus text-pink" ion-button clear>1</button></span>
+          <span><button class="plus-minus text-pink" ion-button clear>+</button></span>
+        </div>
+      </ion-item>
+    </ion-item>
+  </div>
+  <div class="saperator"></div>
+
+
+</ion-content>
+<ion-footer>
+  <div class="make-div">
+    <button (click)="openPayment()" ion-button round full>Make Payment</button>
+  </div>
+</ion-footer>

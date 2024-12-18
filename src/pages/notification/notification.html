@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end>
+      <button padding ion-button icon-only>
+        <!--<ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>-->
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-refresher class="pull-refresh" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div margin-top>
+    <div *ngIf="isListEmpty" class="big-text" margin-top padding text-center>No Notifications are available.</div>
+    <div *ngIf="!isListEmpty">
+      <div class="top-margin small-text text-dark" *ngIf="isTodayAvailable">Today<span class="right-align"
+          (click)="clear(false,false)">Clear all</span></div>
+      <div *ngFor="let item of notificationList">
+        <ion-card (click)="openDetail(item)" class="card-item" *ngIf="item.isToday">
+          <ion-item no-lines no-padding>
+            <ion-icon item-left class="notif-icon text-pink" name="ios-notifications-outline"></ion-icon>
+            <div>
+              <div class="medium-text bold-font">{{item.title}}<span
+                  class="right-align normal-font nobold-font smaller-text text-pink">{{util.timeSince(item.create_dt)}}</span></div>
+              <div text-wrap class="top-margin smaller-text text-grey">{{item.message}}<span *ngIf="item.types=='1'" class="bold-font">... Click Here</span></div>
+            </div>
+          </ion-item>
+        </ion-card>
+      </div>
+      <div padding-top class="top-margin small-text text-dark" *ngIf="isYesterdayAvailable">Yesterday<span
+          class="right-align" (click)="clear(false,false)">Clear</span></div>
+      <div *ngFor="let item of notificationList">
+        <ion-card class="card-item" *ngIf="item.isYesterday">
+          <ion-item no-lines no-padding>
+            <ion-icon item-left class="notif-icon text-pink" name="ios-notifications-outline"></ion-icon>
+            <div>
+              <div class="medium-text bold-font">{{item.title}}<span
+                  class="right-align normal-font nobold-font smaller-text text-pink">{{util.timeSince(item.create_dt)}}</span></div>
+              <div text-wrap class="top-margin smaller-text text-grey">{{item.message}}</div>
+            </div>
+          </ion-item>
+        </ion-card>
+      </div>
+      <div padding-top class="top-margin small-text text-dark" *ngIf="isPast">Past<span class="right-align" (click)="clear(true,true)">Clear All</span>
+      </div>
+      <div *ngFor="let item of notificationList">
+        <ion-card class="card-item" *ngIf="item.isOld">
+          <ion-item no-lines no-padding>
+            <ion-icon item-left class="notif-icon text-pink" name="ios-notifications-outline"></ion-icon>
+            <div>
+              <div class="medium-text bold-font">{{item.title}}<span
+                  class="right-align normal-font nobold-font smaller-text text-pink">{{util.timeSince(item.create_dt)}}</span></div>
+              <div text-wrap class="top-margin smaller-text text-grey">{{item.message}}</div>
+            </div>
+          </ion-item>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

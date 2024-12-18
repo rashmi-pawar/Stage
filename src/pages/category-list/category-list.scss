@@ -1,0 +1,16 @@
+page-category-list {
+  .cate-img{
+    height: 80pt;
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  .cate-name{
+    position: absolute;
+    margin-top: -30pt;
+    margin-left: 10pt;
+  }
+  .left-margin{
+    margin-left: 5pt;
+  }
+}

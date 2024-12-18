@@ -1,0 +1,31 @@
+page-all-categories {
+  .cate-img{
+    height: 140px;
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  .cate-name{
+    position: absolute;
+    margin-top: -30pt;
+    margin-left: 10pt;
+  }
+  .cate-div{
+    padding-left: 15pt;
+    padding-right: 15pt;
+  }
+  .header-text{
+    padding: 5pt 10pt 5pt 17pt;
+  }
+  .slider-cate-img{
+    height: 60px;
+    object-fit: cover;
+    width: 100%;
+  }
+  .slider-cate-name{
+    padding: 5pt;
+  }
+  ion-card{
+    border-radius: 10px !important;
+  }
+}

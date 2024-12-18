@@ -1,0 +1,152 @@
+<ion-content class="grey-bg">
+  <ion-icon (click)="back()" class="back-icon text-black" name="ios-arrow-back"></ion-icon>
+  <img class="banner-img" [src]="banner">
+  <div class="box bold-font">
+    <ion-card no-padding *ngIf="bookingtype=='Space'">
+      <div class="green-top"></div>
+      <div padding>
+        <div class="small-text text-grey">Space Name:</div>
+        <div class="top-margin smaller-text text-black">{{ ticketdata.space_name }}</div>
+
+        <div margin-top class="small-text text-grey">Space Details:</div>
+        <div class="top-margin smaller-text text-black">{{ ticketdata.description }}</div>
+
+        <div margin-top class="small-text text-grey">Date:</div>
+        <div class="top-margin smaller-text text-black">Start: {{ticketdata.start_date | date: "dd-MMM-yyyy "}}
+          <span class="right-align normal-font">End: {{ticketdata.end_date | date: "dd-MMM-yyyy "}}</span>
+        </div>
+
+        <div margin-top class="small-text text-grey">Space Area:
+          <span class="right-align normal-font">
+            <img style="height:90px;width:90px;"
+            [src]="ticketdata.qr_code_img&&ticketdata.qr_code_img!==''?'https://alphawizztest.tk/Stage/uploads/qrcode/'+ticketdata.qr_code_img:'https://alphawizztest.tk/Stage/uploads/qrcode/16tic6JAOUYF.png'">
+          </span>
+        </div>
+        <div class="top-margin smaller-text text-black normal-font">{{ ticketdata.area }} Square Feet</div>
+
+        <div margin-top class="small-text text-grey">Booking ID</div>
+        <div class="top-margin medium-text text-green normal-font">{{ booking_ref }}</div>
+
+        <div margin-top>
+          <div class="round-left"></div>
+          <div class="dotted"></div>
+          <div class="round-right"></div>
+        </div>
+
+        <div style="margin-top: 50pt" class="small-text text-grey">Name:</div>
+        <div class="top-margin smaller-text text-black">{{ ticketdata.first_name }} {{ ticketdata.last_name }}</div>
+
+        <div margin-top class="smaller-text text-black">Space Price<span class="right-align normal-font">${{
+            ticketdata.price }}</span></div>
+
+        <div margin-top class="smaller-text text-black">Total<span class="right-align normal-font">${{ ticketdata.price
+            }}</span></div>
+      </div>
+      <div class="green-bottom" text-center>
+        <button ion-button full class="green-bg text-white">
+          <ion-icon style="margin-right: 5px" name="md-checkmark"></ion-icon>Approved
+        </button>
+      </div>
+    </ion-card>
+    <ion-card no-padding *ngIf="bookingtype=='Equipment'">
+      <div class="green-top"></div>
+      <div padding>
+        <div class="small-text text-grey">Equipment Name:</div>
+        <div class="top-margin smaller-text text-black">{{ ticketdata.equipment_name }}</div>
+
+        <div margin-top class="small-text text-grey">Equipment Details:</div>
+        <div class="top-margin smaller-text text-black">{{ ticketdata.description }}</div>
+
+        <div margin-top class="small-text text-grey">Date:</div>
+        <div class="top-margin smaller-text text-black">Start: {{ticketdata.available_from | date: "dd-MMM-yyyy "}}
+          <span class="right-align normal-font">End: {{ticketdata.available_to | date: "dd-MMM-yyyy "}}</span>
+        </div>
+
+        <div margin-top class="small-text text-grey">Equipment Rate:
+          <span class="right-align normal-font">
+            <img style="height:90px;width:90px;"
+            [src]="ticketdata.qr_code_img&&ticketdata.qr_code_img!==''?'https://alphawizztest.tk/Stage/uploads/qrcode/'+ticketdata.qr_code_img:'https://alphawizztest.tk/Stage/uploads/qrcode/16tic6JAOUYF.png'">
+          </span>
+        </div>
+        <div class="top-margin smaller-text text-black">Per Day: 
+          <span class="normal-font">{{ ticketdata.rate_per_day }}</span>
+        </div>
+
+        <div margin-top class="small-text text-grey">Booking ID</div>
+        <div class="top-margin medium-text text-green normal-font">{{ booking_ref }}</div>
+
+        <div margin-top>
+          <div class="round-left"></div>
+          <div class="dotted"></div>
+          <div class="round-right"></div>
+        </div>
+
+        <div style="margin-top: 50pt" class="small-text text-grey">Name:</div>
+        <div class="top-margin smaller-text text-black">{{ ticketdata.first_name }} {{ ticketdata.last_name }}</div>
+
+        <div margin-top class="smaller-text text-black">Equipment Rent<span class="right-align normal-font">${{
+            ticketdata.rate_per_day }}</span></div>
+
+        <div margin-top class="smaller-text text-black">Total<span class="right-align normal-font">${{
+            ticketdata.rate_per_day }}</span></div>
+      </div>
+      <div class="green-bottom" text-center>
+        <button ion-button full class="green-bg text-white">
+          <ion-icon style="margin-right: 5px" name="md-checkmark"></ion-icon>Approved
+        </button>
+      </div>
+    </ion-card>
+    <ion-card no-padding *ngIf="bookingtype=='Event'">
+      <div class="green-top"></div>
+      <div padding>
+        <div class="small-text text-grey">Event Name:</div>
+        <div class="top-margin smaller-text text-black">{{ ticketdata.event_name }}</div>
+
+        <div margin-top class="small-text text-grey">Event Details:</div>
+        <div class="top-margin smaller-text text-black">{{ ticketdata.description }}</div>
+
+        <div margin-top class="small-text text-grey">Date:</div>
+        <div class="top-margin smaller-text text-black">Start: {{ticketdata.start_date | date: "dd-MMM-yyyy "}}
+          <span class="right-align normal-font">End: {{ticketdata.end_date | date: "dd-MMM-yyyy "}}</span>
+        </div>
+
+        <div margin-top class="small-text text-grey">Time:
+          <span class="right-align normal-font">
+            <img style="height:90px;width:90px;"
+            [src]="ticketdata.qr_code_img&&ticketdata.qr_code_img!==''?'https://alphawizztest.tk/Stage/uploads/qrcode/'+ticketdata.qr_code_img:'https://alphawizztest.tk/Stage/uploads/qrcode/16tic6JAOUYF.png'">
+          </span>
+        </div>
+        <div class="top-margin smaller-text text-black normal-font">{{ ticketdata.event_time }}</div>
+
+
+        <div margin-top class="small-text text-grey">Booking ID</div>
+        <div class="top-margin medium-text text-green normal-font">{{ booking_ref }}</div>
+
+
+        <div margin-top>
+          <div class="round-left"></div>
+          <div class="dotted"></div>
+          <div class="round-right"></div>
+        </div>
+
+        <div style="margin-top: 50pt" class="small-text text-grey">Name:</div>
+        <div class="top-margin smaller-text text-black">{{ ticketdata.first_name }} {{ ticketdata.last_name }}</div>
+
+        <div margin-top class="smaller-text text-black">Ticket Class - {{ ticketdataextra.ticket_class }} <span
+            class="right-align normal-font">${{ ticketdataextra.price }}</span></div>
+        <div margin-top class="smaller-text text-black">Coupon Discount <span class="right-align normal-font">${{
+            ticketdataextra.discount_value }}</span></div>
+
+        <div margin-top class="smaller-text text-black">Total<span class="right-align normal-font">${{
+            ticketdataextra.price }}</span></div>
+      </div>
+      <div class="green-bottom" text-center>
+        <button ion-button full class="green-bg text-white">
+          <ion-icon style="margin-right: 5px" name="md-checkmark"></ion-icon>Approved
+        </button>
+      </div>
+    </ion-card>
+    <div margin-top></div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,25 @@
+page-tabs {
+
+  .middle-tab{
+    position: absolute;
+    bottom: 5pt;
+    left: 40%;
+    right: 0;
+    width: 60pt;
+    text-align: center;
+  }
+  .plus-icon{
+    font-size: 3rem;
+    color: white;
+    background: red;
+    padding: 8pt 13pt;
+    border-radius: 50%;
+    margin: 5pt;
+  }
+  .tabs .tab-button-icon,.tabs .tab-button-text{
+    color: black;
+  }
+  .tabs .tab-button[aria-selected=true] .tab-button-text{
+    color: #EC5368;
+  }
+}

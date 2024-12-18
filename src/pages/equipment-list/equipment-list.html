@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end>
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf="isListEmpty" text-center margin-top padding class="bold-font big-text">No Equipments are available</div>
+  <div *ngIf="!isListEmpty">
+  <div class="bold-font big-text">Equipment List</div>
+    <div margin-top *ngFor="let equip of equipList">
+      <ion-item (click)="openEquipDetailPage(equip)" no-lines no-padding class="card-item">
+        <img item-left class="equip-img" [src]="equip.attachment && equip.attachment !=='' && equip.attachment !=='http://15.206.103.57/Stage//'?equip.attachment:'assets/img/equipment-banner.png'">
+        <div item-start class="card-div">
+          <div text-wrap class="bold-font smaller-text">{{equip.equipment_name}}</div>
+          <div style="margin-top: 5pt" text-wrap class="text-grey smaller-text">
+            {{equip.description}}
+          </div>
+          <ion-item style="min-height: 1rem" no-padding no-lines class="smaller-text">
+            <div item-left><ion-icon class="text-pink" name="pin"></ion-icon><span class="left-margin">{{equip.equipment_location !=='0'?equip.equipment_location:'No Location'}}</span></div>
+            <button text-right class="view-btn" item-right ion-button clear>View Equipment
+              <ion-icon class="left-margin" name="ios-arrow-forward"></ion-icon>
+            </button>
+          </ion-item>
+        </div>
+      </ion-item>
+    </div>
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+</ion-content>

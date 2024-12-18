@@ -1,0 +1,107 @@
+/*.background-green{background: #1DBF73}
+.text-green{color: #1DBF73}*/
+.background-pink{background: #EC5368}
+.text-pink{color: #EC5368}
+.text-grey {color: #999;}
+.text-darkgrey {color: #515151;}
+.text-black{color: black}
+.text-dark{color: #252525}
+.text-white {color: white;}
+.text-green {color: green;}
+.text-red {color: red;}
+.smallest-text{font-size: 0.8rem;}
+.smaller-text{font-size: 1rem;}
+.small-text{font-size: 1.2rem;}
+.medium-text{font-size: 1.4rem;}
+.big-text{font-size: 1.7rem;}
+.bigger-text{font-size: 2rem;}
+.nobold-font{font-weight: normal}
+.bold-font{font-weight: bold}
+.medium-bold{font-weight: 500}
+.normal-font{font-family: Rubik}
+.underline{text-decoration-line: underline;}
+.right-align{float: right;}
+.error-message {
+  color: red;
+  text-align: left;
+  margin-left: 20pt;
+  margin-top: 5pt;
+  font-size: 12px;
+}
+.full-input {
+  border: none;
+  width: 100%;
+}
+button{
+  text-transform: none !important;
+}
+.saperator{
+  width: 100%;
+  height: 1px;
+  background: #999;
+}
+.toolbar-background {
+  background-color: white;
+  color: white;
+}
+.toolbar-title-ios, .toolbar-title-md{
+  color: white;
+}
+.social-div{
+  margin-top: 20pt;
+  .social-icon{width: 13%;
+    border-radius: 25px;}
+}
+.header-icon{
+  width: 35%;
+}
+.input-line{
+  border-bottom: 1px solid #999 !important;
+  padding: 15pt 10pt 10pt 0pt !important;
+}
+.attachment{
+  padding: 17pt 25pt;
+  font-size: 4rem;
+  border: 1px dashed #999;
+  border-radius: 10px;
+  margin-top: 8pt;
+}
+.back-icon{
+  position: absolute;
+  left: 0;
+  padding: 15pt;
+  font-size: 2.6rem;
+  color: #e0e0e0;
+}
+.banner{
+  height: 200pt;width: 100%;object-fit: cover;
+}
+.card-shadow{
+  box-shadow: 2px 2px 5px 1px #e0e0e0;
+}
+.has-refresher > .scroll-content{
+  border-top: none !important;
+}
+
+.input-cover{
+  display: none;
+}
+
+.fileInput label {
+  color: #717171;
+  background-color: white;
+  display: inline-block;
+  cursor: pointer;
+  padding: .5em 1em;
+  border: 1px solid #ccc;
+}
+
+input#attachment {
+  display: none;
+}
+.attachment-img{
+  height: 90pt;
+  width: 90pt;
+  object-fit: cover;
+  margin: 10pt 0;
+}

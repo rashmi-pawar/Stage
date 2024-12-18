@@ -1,0 +1,53 @@
+<ion-content>
+  <ion-icon (click)="back()" class="back-icon text-black" style="color:black;" name="ios-arrow-back"></ion-icon>
+  <img class="banner" [src]="equipDetail.attachment && equipDetail.attachment !==''&& equipDetail.attachment !=='http://15.206.103.57/Stage//'?equipDetail.attachment:'assets/img/equipment-banner.png'">
+  <div padding>
+    <div class="bold-font medium-text">{{equipDetail.equipment_name}}</div>
+    <div margin-top class="small-text text-grey">{{equipDetail.description}}</div>
+
+    <div margin-top padding-top class="medium-text">Equipment Rate</div>
+    <ion-item margin-top no-lines no-padding class="medium-text bold-font">
+      <ion-label>Per Hours</ion-label>
+      <ion-checkbox  *ngIf="isComplete!='show'" [ngModel]="checkedIdx == 0"  (click)="godata(equipDetail.rate_per_hour)" (ngModelChange)="$event ? checkedIdx = 0 : checkedIdx = -1" [disabled]="checkedIdx >= 0 && checkedIdx != 0"></ion-checkbox>
+      <div item-right class="normal-font no-margin">${{equipDetail.rate_per_hour}}</div>
+    </ion-item>
+    <ion-item no-lines no-padding class="medium-text bold-font">
+      <ion-label>Per Day</ion-label>
+      <ion-checkbox  *ngIf="isComplete!='show'" [ngModel]="checkedIdx == 1"  (click)="godata(equipDetail.rate_per_day)" (ngModelChange)="$event ? checkedIdx = 1 : checkedIdx = -1" [disabled]="checkedIdx >= 0 && checkedIdx != 1"></ion-checkbox>
+      <div item-right class="normal-font no-margin">${{equipDetail.rate_per_day}}</div>
+    </ion-item>
+    <ion-item no-lines no-padding class="medium-text bold-font">
+      <ion-label>Per Month</ion-label>
+      <ion-checkbox  *ngIf="isComplete!='show'" [ngModel]="checkedIdx == 2"  (click)="godata(equipDetail.rate_per_month)" (ngModelChange)="$event ? checkedIdx = 2 : checkedIdx = -1" [disabled]="checkedIdx >= 0 && checkedIdx != 2"></ion-checkbox>
+      <div item-right class="normal-font no-margin">${{equipDetail.rate_per_month}}</div>
+    </ion-item>
+
+    <div margin-top class="bold-font medium-text">Equiment Training <span class="right-align normal-font">{{equipDetail.no_of_training_days}} Days</span></div>
+
+    <div margin-top padding-top class="medium-text">Availability</div>
+    <div margin-top class="small-text text-grey">Available</div>
+    <div margin-top class="normal-font small-text text-grey">From-{{equipDetail.available_from | date: "dd-MMM-yyyy "}}<span class="right-align">To-{{equipDetail.available_to | date: "dd-MMM-yyyy "}}</span></div>
+    <div margin-top class="small-text text-grey">None Available</div>
+    <div margin-top class="normal-font small-text text-grey">From-{{equipDetail.none_available_from | date: "dd-MMM-yyyy "}}<span class="right-align">To-{{equipDetail.none_available_to | date: "dd-MMM-yyyy "}}</span></div>
+
+    <div margin-top padding-top class="medium-text">Equipment Owner Details</div>
+    <div margin-top class="small-text text-grey">Full Name<span class="right-align">{{equipDetail.first_name+' '+equipDetail.last_name}}</span></div>
+    <div margin-top class="small-text text-grey">Mobile Number<span class="right-align normal-font">{{equipDetail.mobile}}</span></div>
+    <div margin-top class="small-text text-grey">Email<span class="right-align">{{equipDetail.email}}</span></div>
+
+  </div>
+  <div margin-top class="saperator"></div>
+  <div padding *ngIf="isComplete!='show'">
+    <!-- <div margin-top class="bold-font big-text">Contact Us <span class="right-align normal-font"><ion-icon name="ios-arrow-up"></ion-icon></span></div>
+    <input margin-top type="text" class="full-input input-line medium-text" placeholder="First Name">
+    <input type="text" class="full-input input-line medium-text" placeholder="Last Name">
+    <input type="email" class="full-input input-line medium-text" placeholder="Email">
+    <input type="number" class="full-input input-line medium-text" placeholder="Mobile">
+    <textarea class="full-input input-line medium-text" placeholder="Message" rows="4"></textarea> -->
+
+    <div class="book-div" *ngIf="isComplete!='show'">
+      <button (click)="book()" ion-button full round>Book</button>
+    </div>
+  </div>
+
+</ion-content>

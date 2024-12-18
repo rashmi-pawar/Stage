@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end (click)="notification()">
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="bold big-text" text-center padding margin *ngIf="isListEmpty">Your chat list is empty</div>
+  <div *ngIf="!isListEmpty">
+    <div margin-top margin-bottom>
+      <ion-item *ngFor="let user of allUsers" no-lines (click)="openChat(user)">
+        <ion-avatar item-left>
+          <!--<div class="green-dot"></div>-->
+          <img [src]="user.image&&user.image!==''?user.image:'assets/img/user_default.png'">
+        </ion-avatar>
+        <div item-start>
+          <div class="big-text">{{user.name}}</div>
+          <div style="margin-top: 5px" class="text-grey small-text">{{user.last_message && user.last_message!==''?user.last_message:''}}</div>
+        </div>
+        <div class="smallest-text" item-right>{{util.timeSince(user.last_message_time)}}</div>
+      </ion-item>
+    </div>
+    <!--<ion-item no-lines (click)="openChat()">
+      <ion-avatar item-left>
+        <div class="green-dot"></div>
+        <img src="assets/img/women.png">
+      </ion-avatar>
+      <div item-start>
+        <div class="big-text">Lia Gonsalwiz</div>
+        <div style="margin-top: 5px" class="text-grey small-text">Sure</div>
+      </div>
+      <div class="smallest-text" item-right>Today4:12pm</div>
+    </ion-item>
+
+    <ion-item no-lines (click)="openChat()">
+      <ion-avatar item-left>
+        <div class="green-dot"></div>
+        <img src="assets/img/men2.png">
+      </ion-avatar>
+      <div item-start>
+        <div class="big-text">John Letho</div>
+        <div style="margin-top: 5px" class="text-grey small-text">Where are you working?</div>
+      </div>
+      <div class="smallest-text" item-right>Today3:52pm</div>
+    </ion-item>
+
+    <ion-item no-lines (click)="openChat()">
+      <ion-avatar item-left>
+        &lt;!&ndash;<div class="green-dot"></div>&ndash;&gt;
+        <img src="assets/img/women.png">
+      </ion-avatar>
+      <div item-start>
+        <div class="big-text">Luis Decosta</div>
+        <div style="margin-top: 5px" class="text-grey small-text">Meet tomorrow at 4</div>
+      </div>
+      <div class="smallest-text" item-right>Today3:40pm</div>
+    </ion-item>-->
+  </div>
+</ion-content>

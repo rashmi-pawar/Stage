@@ -1,0 +1,22 @@
+
+<ion-content>
+    
+    
+  
+</ion-content>
+
+<ion-footer>
+    <div class="modal" padding-left padding-right >
+        <h4 padding-bottom >Choose Card</h4>
+
+        <div class="main">
+            <ion-list radio-group [(ngModel)]="relationship"> 
+                <ion-item no-padding margin-top *ngFor="let item of cardDetail">
+                    <ion-label>{{item.card_number}}</ion-label>
+                    <ion-radio value="cash" (click)="back(item)"></ion-radio>
+                  </ion-item>
+
+              </ion-list>
+        </div>
+  </div>
+</ion-footer>

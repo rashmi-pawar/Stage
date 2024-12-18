@@ -1,0 +1,146 @@
+<ion-content>
+  <ion-icon (click)="back()" class="back-icon text-black" name="ios-arrow-back"></ion-icon>
+  <img class="banner"
+    [src]="eventData.attachment&&eventData.attachment!==''?'https://alphawizztest.tk/Stage/'+eventData.attachment:'assets/img/banner.png'">
+  <div padding>
+    <div class="bold-font medium-text">{{eventData.event_name}}</div>
+    <div margin-top class="small-text text-grey">{{eventData.description}}</div>
+    <div padding-top margin-top class="small-text text-grey">Time<span
+        class="right-align normal-font">{{eventData.event_time}}</span>
+    </div>
+    <div margin-top class="small-text text-grey">Start Date<span
+        class="right-align normal-font">{{eventData.start_date | date: "dd-MMM-yyyy "}} </span>
+    </div>
+    <div margin-top class="small-text text-grey">End Date<span
+        class="right-align normal-font">{{eventData.end_date | date: "dd-MMM-yyyy "}}</span></div>
+
+    <div margin-top padding-top class="medium-text">Ticket Price</div>
+    <ion-item margin-top no-lines no-padding class="medium-text bold-font">
+      <ion-label>General</ion-label>
+      <ion-checkbox (click)="getdata(eventData.general_ticket_price)" [ngModel]="checkedIdx == 0" (ngModelChange)="$event ? checkedIdx = 0 : checkedIdx = -1" [disabled]="checkedIdx >= 0 && checkedIdx != 0"></ion-checkbox>
+      <div item-right class="normal-font no-margin">${{eventData.general_ticket_price}}</div>
+      <!-- <div class="box" item-right>
+        <button (click)="decreaseGeneral()" class="plus-minus add-btn text-pink" ion-button clear>-</button>
+        <span>
+          <button class="text-pink add-btn" ion-button clear>
+            <input style="width: 20px;border: none" [(ngModel)]="generalNumOfTickets" disabled class="text-pink"
+              type="number" placeholder="0">
+          </button>
+        </span>
+        <span><button (click)="increaseGeneral()" class="plus-minus add-btn text-pink" ion-button
+            clear>+</button></span>
+      </div> -->
+    </ion-item>
+    <ion-item no-lines no-padding class="medium-text bold-font">
+      <ion-label>Business</ion-label>
+      <ion-checkbox (click)="getdata(eventData.business_ticket_price)" [ngModel]="checkedIdx == 1" (ngModelChange)="$event ? checkedIdx = 1 : checkedIdx = -1" [disabled]="checkedIdx >= 0 && checkedIdx != 1"></ion-checkbox>
+      <div item-right class="normal-font no-margin">${{eventData.business_ticket_price}}</div>
+      <!-- <div class="box" item-right>
+        <button (click)="decreaseBusiness()" class="plus-minus add-btn text-pink" ion-button clear>-</button>
+        <span>
+          <button class="text-pink add-btn" ion-button clear>
+            <input style="width: 20px;border: none" [(ngModel)]="businessNumOfTickets" disabled class="text-pink"
+              type="number" placeholder="0">
+          </button>
+        </span>
+        <span><button (click)="increaseBusiness()" class="plus-minus add-btn text-pink" ion-button
+            clear>+</button></span>
+      </div> -->
+    </ion-item>
+    <ion-item no-lines no-padding class="medium-text bold-font">
+      <ion-label>Gold</ion-label>
+      <ion-checkbox (click)="getdata(eventData.gold_ticket_price)" [ngModel]="checkedIdx == 2" (ngModelChange)="$event ? checkedIdx = 2 : checkedIdx = -1" [disabled]="checkedIdx >= 0 && checkedIdx != 2"></ion-checkbox>
+      <div item-right class="normal-font no-margin">${{eventData.gold_ticket_price}}</div>
+      <!-- <div class="box" item-right>
+        <button (click)="decreaseGold()" class="plus-minus add-btn text-pink" ion-button clear>-</button>
+        <span>
+          <button class="text-pink add-btn" ion-button clear>
+            <input style="width: 20px;border: none" [(ngModel)]="goldNumOfTickets" disabled class="text-pink"
+              type="number" placeholder="0">
+          </button>
+        </span>
+        <span><button (click)="increaseGold()" class="plus-minus add-btn text-pink" ion-button clear>+</button></span>
+      </div> -->
+    </ion-item>
+    <ion-item no-lines no-padding class="medium-text bold-font">
+      <ion-label>Silver</ion-label>
+      <ion-checkbox (click)="getdata(eventData.silver_ticket_price)" [ngModel]="checkedIdx == 3" (ngModelChange)="$event ? checkedIdx = 3 : checkedIdx = -1" [disabled]="checkedIdx >= 0 && checkedIdx != 3"></ion-checkbox>
+      <div item-right class="normal-font no-margin">${{eventData.silver_ticket_price}}</div>
+      <!-- <div class="box" item-right>
+        <button (click)="decreaseSilver()" class="plus-minus add-btn text-pink" ion-button clear>-</button>
+        <span>
+          <button class="text-pink add-btn" ion-button clear>
+            <input style="width: 20px;border: none" [(ngModel)]="silverNumOfTickets" disabled class="text-pink"
+              type="number" placeholder="0">
+          </button>
+        </span>
+        <span><button (click)="increaseSilver()" class="plus-minus add-btn text-pink" ion-button clear>+</button></span>
+      </div> -->
+    </ion-item>
+
+
+    <ion-item no-lines no-padding margin-top padding-top>
+      <div item-left class="medium-text bold-font">Total Ticket</div>
+      <ion-item style="margin: 0" item-right class="right-align normal-font">
+        <img item-right class="ticket" src="assets/img/ticket-money.png">
+        <div item-right style="margin: 0" class="normal-font bold-font">{{eventData.no_of_ticket_sale}}</div>
+      </ion-item>
+    </ion-item>
+
+
+    <ion-item no-lines no-padding margin-top padding-top>
+      <div item-left class="medium-text bold-font">Book Tickets quantity</div>
+      <ion-item style="margin: 0;width: 34%;" item-right class="right-align normal-font">
+        <!-- <img item-right class="ticket" src="assets/img/ticket-money.png"> -->
+        <div item-right style="margin: 0;" class="normal-font bold-font">
+          <!-- {{eventData.no_of_ticket_sale}} -->
+          <ion-input placeholder="1" type="number" [(ngModel)]="no_of_ticket" (input)='onChangeQuantity()' class="ticket_quantity" ></ion-input>
+        </div>
+      </ion-item>
+    </ion-item>
+
+    <div margin-top padding-top class="medium-text">Event Organizer Details</div>
+    <!-- <div margin-top class="small-text text-grey">Full Name<span class="right-align">{{eventData.first_name}}
+        {{eventData.last_name}}</span></div> -->
+    <!-- <div margin-top class="small-text text-grey">Mobile Number<span
+        class="right-align normal-font">{{eventData.mobile}}</span>
+    </div> -->
+    <div margin-top class="small-text text-grey">Email<span class="right-align">{{eventData.email}}</span></div>
+
+    <!-- <ion-item no-padding class="promo-code-div background-pink">
+      <img class="coupon" item-left src="assets/icon/coupon.png"> -->
+      <!--      <div item-start class="text-white bold-font medium-text">Apply a promo code {{eventData.discount_code}}-->
+      <!-- <div item-start class="text-white bold-font small-text">Apply a promo code</div>
+      <div padding-right item-right class="bold-font text-white medium-text"><span><input type="text" class="promo-code"
+            placeholder="PROMO-CODE"></span>Apply</div>
+    </ion-item> -->
+    <div padding-top padding-bottom>
+      <div margin-top class="bold-font medium-text">Sub Total <span class="right-align normal-font">${{totalVal}}</span>
+      </div>
+      <!-- <div margin-top class="bold-font medium-text">Coupon Discount <span
+          class="right-align normal-font">${{eventData.discount_value}}</span>
+      </div> -->
+      <div margin-top class="bold-font medium-text">Total <span
+          class="right-align normal-font">${{eventdiscount_value}}
+        </span></div>
+    </div>
+
+  </div>
+  <div class="saperator"></div>
+  <!--No need of Contact us-->
+  <div padding>
+    <!--<div margin-top class="bold-font big-text">Contact Us <span class="right-align normal-font">
+        <ion-icon name="ios-arrow-up"></ion-icon>
+      </span></div>
+    <input margin-top type="text" class="full-input input-line medium-text" placeholder="First Name">
+    <input type="text" class="full-input input-line medium-text" placeholder="Last Name">
+    <input type="email" class="full-input input-line medium-text" placeholder="Email">
+    <input type="number" class="full-input input-line medium-text" placeholder="Mobile">
+    <textarea class="full-input input-line medium-text" placeholder="Message" rows="4"></textarea>-->
+
+    <div class="book-ticket-div" *ngIf="curDate<=eventData.end_date">
+      <button (click)="book()" ion-button full round>Book Ticket</button>
+    </div>
+  </div>
+
+</ion-content>

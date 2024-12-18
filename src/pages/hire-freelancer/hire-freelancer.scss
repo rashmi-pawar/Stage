@@ -1,0 +1,54 @@
+page-hire-freelancer {
+  .back{
+    padding: 13pt 5pt 10pt 15pt;
+    font-size: 2.5rem;
+    position: absolute;
+    z-index: 9999;
+  }
+  .cover-img{
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+  }
+  .user-img{
+    height: 25pt;width: 25pt;object-fit: contain;margin: 0;border-radius: 5px;
+  }
+  ion-card{
+    border-radius: 10px !important;
+    margin: 0 !important;
+  }
+  .freelancer-project{
+    height: 80pt;
+    width: 100%;
+    object-fit: cover;
+  }
+  .hire-btn-div{
+    margin: 5pt 40pt 40pt 40pt;
+  }
+  .review-user-img{
+    height: 25pt;width: 25pt;object-fit: cover;border-radius: 5px;
+  }
+  .rating-count{
+    background: #F29529;color: white;padding: 5pt;border-radius: 5px;
+  }
+  .ionic3-star-rating[_ngcontent-c0] .button[_ngcontent-c0]{
+    height: 22px !important;width: 22px !important;
+    margin: 0;
+    ion-icon{
+      font-size: 22px !important;
+      padding: 0;
+    }
+  }
+  .select-project{
+    height: 0px;
+    width: 0px;
+    padding: 0px;
+  }
+  .banner-index{
+    margin-top: -20pt;
+    z-index: 9999;
+    position: absolute;
+    right: 10pt;
+    color: #e0e0e0;
+  }
+}

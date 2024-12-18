@@ -1,0 +1,135 @@
+<ion-content>
+  <ion-icon (click)="back()" class="back-icon text-black" name="ios-arrow-back"></ion-icon>
+  <img class="banner"
+    [src]="status.attachment && status.attachment !=='' && status.attachment !=='http://15.206.103.57/Stage//'?status.attachment:'assets/img/banner.png'">
+  <div padding>
+    <ion-item no-lines no-padding>
+      <img item-left class="user-img"
+        [src]="status.profile_pic && status.profile_pic !=='' && status.profile_pic !=='http://15.206.103.57/Stage//'?status.profile_pic:'assets/img/user_default.png'">
+      <div class="small-text bold-font">{{status.first_name}} {{status.last_name}}</div>
+      <div class="small-text text-grey">{{status.skills}}</div>
+      <div *ngIf="status.status=='In Progress'" item-right class="set-shadow small-text bold-font yellow-text">IN
+        PROGRESS</div>
+      <div *ngIf="status.status=='Completed'" item-right class="set-shadow small-text bold-font green-text">COMPLETED
+      </div>
+    </ion-item>
+    <div margin-top class="bold-font medium-text">{{status.title}}</div>
+    <div margin-top class="small-text text-grey">{{status.description}}</div>
+    <!-- <div padding-top margin-top class="medium-text bold-font">Requirement</div>
+    <div class="top-margin small-text text-grey">Wedding Planner<span class="right-align normal-font">1 Person</span>
+    </div> -->
+
+    <div padding-top margin-top class="medium-text bold-font">Rate<span
+        class="right-align normal-font">${{status.price}}</span></div>
+    <div class="top-margin small-text text-grey">Start Date<span
+        class="right-align normal-font">{{status.project_from | date: "dd-MMM-yyyy "}}</span></div>
+    <div class="top-margin small-text text-grey">End Date<span
+        class="right-align normal-font">{{status.project_to | date: "dd-MMM-yyyy "}}</span></div>
+
+    <div margin-top padding-top>
+      <button (click)="completeProject()" ion-button round full
+        *ngIf="status.status=='In Progress' && isComplete=='show'">Complete</button>
+      <button (click)="back()" ion-button round full
+        *ngIf="status.status=='Completed' || isComplete!='show'">Cancle</button>
+    </div>
+  </div>
+  <div *ngIf="!isCompleted && !isFAQEmpty">
+    <div margin-top class="medium-text bold-font" padding>Frequently Asked Questions</div>
+    <div *ngFor="let item of FAQlist">
+      <div padding>
+        <div margin-top class="bold-font small-text">{{item.question}}</div>
+        <div class="top-margin small-text text-grey">{{item.answer}}</div>
+      </div>
+      <div class="saperator"></div>
+    </div>
+  </div>
+  <div *ngIf="isCompleted">
+    <div *ngIf="isComplete!='byfreelanser'">
+      <div padding>
+        <div margin-top class="medium-text bold-font">Review<span
+            class="small-text right-align nobold-font normal-font text-grey">{{reviewList.length>0?(reviewList.length==1?'[1 review]':'['+reviewList.length+' reviews]'):'[No reviews]'}}</span>
+        </div>
+        <div class="top-margin small-text text-grey">Tap to Rate
+          <span class="right-align normal-font">
+            <ionic3-star-rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#F29529"
+              defaultColor="#f4f4f4" readonly="false" rating="0" fontSize="32px" [(ngModel)]="rating">
+            </ionic3-star-rating>
+          </span>
+        </div>
+        <div>
+          <div class="top-margin20 small-text text-grey">Response Rate Out Of 10
+            <div class="right-align normal-font">
+              <div class="row">
+                <ion-input type="number" placeholder="7" class="ratebtn" [(ngModel)]="response_rate"></ion-input>
+                <span class="outoff">
+                  <span style="font-size: 1.5em;">/10</span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="top-margin20 small-text text-grey">Order Completion Out Of 10
+            <div class="right-align normal-font">
+              <div class="row">
+                <ion-input type="number" placeholder="7" class="ratebtn" [(ngModel)]="order_complition"></ion-input>
+                <span class="outoff">
+                  <span style="font-size: 1.5em;">/10</span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="top-margin20 small-text text-grey">On-Time Delivery Out Of 10
+            <div class="right-align normal-font">
+              <div class="row">
+                <ion-input type="number" placeholder="7" class="ratebtn" [(ngModel)]="ontime_delivery"></ion-input>
+                <span class="outoff">
+                  <span style="font-size: 1.5em;">/10</span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="top-margin20 small-text text-grey">Positive Rating Out Of 10
+            <div class="right-align normal-font">
+              <div class="row">
+                <ion-input type="number" placeholder="7" class="ratebtn" [(ngModel)]="positive_rating"></ion-input>
+                <span class="outoff">
+                  <span style="font-size: 1.5em;">/10</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <ion-icon class="edit-icon" name="ios-create-outline"></ion-icon>
+          <textarea class="top-margin review-tab full-input" [(ngModel)]="review" placeholder="Write a Review"
+            rows="6"></textarea>
+        </div>
+        <div text-center margin-top>
+          <button ion-button round (click)="logRatingChange()">Submit</button>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let item of reviewList">
+      <div padding>
+        <div class="medium-text bold-font">{{item.comment}}</div>
+        <ion-item no-lines no-padding style="min-height: 1rem">
+          <img item-left no-padding no-margin class="review-user-img"
+            [src]="item.attachment && item.attachment !=='' && item.attachment !=='http://15.206.103.57/Stage//'?item.attachment:'assets/img/user_default.png'">
+          <div>
+            <div text-wrap class="text-grey smaller-text">{{item.comment}}</div>
+            <div style="margin-top: 5pt" text-wrap class="text-grey smaller-text">by <span
+                class="text-black bold-font">{{item.first_name}} {{item.last_name}}</span> - {{item.create_dt}}</div>
+          </div>
+        </ion-item>
+        <div class="row">
+          <span class="rating-count smaller-text">{{item.rating}}.0</span>
+          <span style="margin-left: 5pt">
+            <ionic3-star-rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#F29529"
+              defaultColor="#f4f4f4" readonly="true" rating="{{item.rating}}" fontSize="32px">
+            </ionic3-star-rating>
+          </span>
+        </div>
+      </div>
+      <div class="saperator"></div>
+    </div>
+  </div>
+</ion-content>

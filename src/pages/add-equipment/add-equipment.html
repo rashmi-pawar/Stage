@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end>
+      <button padding ion-button icon-only (click)="openNotif()">
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div margin>
+    <div text-center class="bold-font bigger-text">Add Equipment</div>
+    <div margin-top padding-top class="bold-font big-text">Equipment Details</div>
+    <input [(ngModel)]="equip.equipment_name" type="text" class="full-input input-line medium-text" placeholder="Equipment Name">
+    <input [(ngModel)]="equip.description" type="text" class="full-input input-line medium-text" placeholder="Equipment Description">
+    <input [(ngModel)]="equip.equipment_location" type="text" class="full-input input-line medium-text" placeholder="Equipment Location">
+
+    <div padding-top margin-top class="bold-font big-text">Equipment Rate</div>
+    <input [(ngModel)]="equip.rate_per_hour" type="number" class="full-input input-line medium-text" placeholder="Equipment Rent Per Hours">
+    <input [(ngModel)]="equip.rate_per_day" type="number" class="full-input input-line medium-text" placeholder="Equipment Rent Per Day">
+    <input [(ngModel)]="equip.rate_per_month" type="number" class="full-input input-line medium-text" placeholder="Equipment Rent Per Month">
+
+    <div padding-top margin-top class="bold-font big-text">Equipment Training</div>
+    <input [(ngModel)]="equip.no_of_training_days" type="number" class="full-input input-line medium-text" placeholder="Training No Of Days">
+
+    <div padding-top margin-top class="bold-font big-text">Availability</div>
+    <div margin-top class="medium-text text-grey">Available</div>
+    <div class="row">
+      <div col-6 style="padding-right: 5pt !important;">
+        <ion-item no-lines no-padding margin-right>
+          <ion-datetime [(ngModel)]="equip.available_from" no-margin no-padding placeholder="From" class="select-date medium-text text-grey" min="{{startDate}}"  max="2050-12-09"  item-right displayFormat="DD-MMM-YYYY"></ion-datetime>
+          <ion-icon class="text-grey calender" item-right name="calendar"></ion-icon>
+        </ion-item>
+        <div class="saperator" padding-right></div>
+      </div>
+      <div col-6 style="padding-left: 5pt !important;">
+        <ion-item no-lines no-padding>
+          <ion-datetime [(ngModel)]="equip.available_to" no-margin no-padding placeholder="To" class="select-date medium-text text-grey" min="{{startDate}}"  max="2050-12-09"  item-right displayFormat="DD-MMM-YYYY"></ion-datetime>
+          <ion-icon class="text-grey calender" item-right name="calendar"></ion-icon>
+        </ion-item>
+        <div class="saperator" padding-right></div>
+      </div>
+    </div>
+
+    <div margin-top class="medium-text text-grey">None Available</div>
+    <div class="row">
+      <div col-6 style="padding-right: 5pt !important;">
+        <ion-item no-lines no-padding margin-right>
+          <ion-datetime [(ngModel)]="equip.none_available_from" no-margin no-padding placeholder="From" class="select-date medium-text text-grey" min="{{startDate}}" item-right displayFormat="DD-MMM-YYYY"></ion-datetime>
+          <ion-icon class="text-grey calender" item-right name="calendar"></ion-icon>
+        </ion-item>
+        <div class="saperator" padding-right></div>
+      </div>
+      <div col-6 style="padding-left: 5pt !important;">
+        <ion-item no-lines no-padding>
+          <ion-datetime [(ngModel)]="equip.none_available_to" no-margin no-padding placeholder="To" class="select-date medium-text text-grey" item-right displayFormat="DD-MMM-YYYY"></ion-datetime>
+          <ion-icon class="text-grey calender" item-right name="calendar"></ion-icon>
+        </ion-item>
+        <div class="saperator" padding-right></div>
+      </div>
+    </div>
+
+
+    <div padding-top margin-top class="bold-font big-text">Equipment Owner Details</div>
+    <input [(ngModel)]="equip.first_name" type="text" class="full-input input-line medium-text" placeholder="First Name">
+    <input [(ngModel)]="equip.last_name" type="text" class="full-input input-line medium-text" placeholder="Last Name">
+    <input [(ngModel)]="equip.mobile" type="number" class="full-input input-line medium-text" placeholder="Mobile">
+    <input [(ngModel)]="equip.email" type="email" class="full-input input-line medium-text" placeholder="Email">
+
+    <div padding-top margin-top class="big-text">Attachment</div>
+    <img class="attachment-img" *ngIf="attachmentToShow && attachmentToShow!==''" [src]="attachmentToShow">
+    <ion-item no-padding no-lines>
+      <label for="attachment">
+        <ion-icon for="attachment" *ngIf="attachmentToShow===''" class="attachment text-grey" name="md-add"></ion-icon>
+      </label>
+      <input id="attachment" class="fileInput" type="file" (change)="getAttachmentEvent($event)"/>
+    </ion-item>
+
+    <div class="btn-div" text-center>
+      <button (click)="postEquipment()" ion-button round class="medium-text">Post Equipment</button>
+    </div>
+  </div>
+</ion-content>

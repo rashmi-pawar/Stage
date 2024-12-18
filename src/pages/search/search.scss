@@ -1,0 +1,52 @@
+page-search {
+  .searchbar .searchbar-search-icon {
+    top: 8px;
+    width: 15px;
+    height: 15px;
+    color: grey;
+  }
+  .searchbar .searchbar-input{
+    padding: 0 45px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    background: #F2F2F2;
+  }
+  .searchbar-ios{
+    background: #F2F2F2;
+    border-radius: 10px;
+    min-height: 35px;
+  }
+  .filter{
+    background: #EC5368;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-size: 2.5rem;
+  }
+
+  .freelancer-img{
+    height: 30pt;
+    width: 30pt;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  .rating-count{
+    background: #F29529;color: white;padding: 2pt 6pt;border-radius: 5px;margin-top: 4pt;
+  }
+  .ionic3-star-rating[_ngcontent-c0] .button[_ngcontent-c0]{
+    height: 18px !important;width: 18px !important;
+    margin: 0;
+    ion-icon{
+      font-size: 18px !important;
+      padding: 0;
+    }
+  }
+  .usd{
+    border: 1px solid #EC5368;
+    border-radius: 50%;
+    padding: 1pt 2pt;
+    height: 8pt;
+    width: 8pt;
+    font-size: 0.6rem;
+  }
+}

@@ -1,0 +1,44 @@
+page-chat {
+  .other-div-content{
+   margin-left: 30pt;
+  }
+  .other-user-img{
+    position: absolute;
+    height: 20pt;
+    width: 20pt;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  .message-left{
+    margin-right: 50pt;
+  }
+  .message-right{
+    margin: 15pt 0 10pt 50pt;
+    .message{
+      background: #EC5368;
+      padding: 8pt 15pt 8pt 8pt;
+      border-radius: 10px 10px 0 10px;
+    }
+  }
+  .type-div{
+    border-radius: 20px;
+    margin: 5pt 15pt 25pt 15pt;
+    box-shadow: 0px 1px 5px 1px #e0e0e0;
+    .chat-input{
+      border-radius: 20px;
+      padding-right: 70pt;
+    }
+  }
+  .chat-icons-div{
+    position: absolute;
+    right: 30pt;
+    bottom: 30pt;
+    .chat-icon{
+      font-size: 2rem;
+      padding: 5pt;
+    }
+  }
+  .footer-md::before{
+    background: none;
+  }
+}

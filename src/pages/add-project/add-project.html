@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end>
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div margin>
+    <div text-center class="bold-font bigger-text">Add Project</div>
+    <input [(ngModel)]="project.title" type="text" class="full-input input-line medium-text" placeholder="Title">
+    <textarea [(ngModel)]="project.description" class="full-input input-line medium-text" placeholder="Description" rows="3"></textarea>
+    <input [(ngModel)]="project.email" type="email" class="full-input input-line medium-text" placeholder="Email">
+    <input [(ngModel)]="project.price" type="number" class="full-input input-line medium-text" placeholder="Price">
+    <ion-item no-lines style="border-bottom: 1px solid #999 !important;padding-top: 8pt" no-padding>
+      <ion-label>Select Category</ion-label>
+      <ion-select [(ngModel)]="project.category_id" no-margin>
+        <ion-option *ngFor="let item of allCategories" value="{{item.id}}" (ionSelect)="selectCategory(item)">{{item.title}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item no-lines style="border-bottom: 1px solid #999 !important;padding-top: 8pt" no-padding>
+      <ion-label>Select Subcategory</ion-label>
+      <ion-select [(ngModel)]="project.subcategory_id" no-margin>
+        <ion-option *ngFor="let item of allSubCategories" value="{{item.id}}">{{item.title}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <div margin-top class="medium-text text-grey" style="padding-top: 8pt">Project Duration</div>
+    <div class="row" style="padding-top: 5pt">
+      <div col-6 style="padding-right: 5pt !important;">
+        <ion-item no-lines no-padding margin-right>
+          <ion-datetime max="2030-10-31" [(ngModel)]="project.project_from" no-margin no-padding placeholder="From" class="select-date medium-text text-grey"  max="2050-12-09"  min="{{startDate}}" item-right displayFormat="DD-MMM-YYYY"></ion-datetime>
+          <ion-icon class="text-grey calender" item-right name="calendar"></ion-icon>
+        </ion-item>
+        <div class="saperator" padding-right></div>
+      </div>
+      <div col-6 style="padding-left: 5pt !important;">
+        <ion-item no-lines no-padding>
+          <ion-datetime max="2030-10-31" [(ngModel)]="project.project_to" no-margin no-padding placehoder="To" class="select-date medium-text text-grey"  max="2050-12-09"  min="{{startDate}}" item-right displayFormat="DD-MMM-YYYY"></ion-datetime>
+          <ion-icon class="text-grey calender" item-right name="calendar"></ion-icon>
+        </ion-item>
+        <div class="saperator" padding-right></div>
+      </div>
+    </div>
+
+    <div padding-top margin-top class="big-text">Attachment</div>
+    <img class="attachment-img" *ngIf="attachmentToShow && attachmentToShow!==''" [src]="attachmentToShow">
+    <ion-item no-padding no-lines>
+      <label for="attachment">
+        <ion-icon for="attachment" *ngIf="attachmentToShow===''" class="attachment text-grey" name="md-add"></ion-icon>
+      </label>
+      <input id="attachment" class="fileInput" type="file" (change)="getAttachmentEvent($event)"/>
+    </ion-item>
+
+    <div class="btn-div" text-center>
+      <button (click)="saveProject()" ion-button full round class="medium-text">Save</button>
+    </div>
+  </div>
+</ion-content>

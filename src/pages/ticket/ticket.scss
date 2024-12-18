@@ -1,0 +1,58 @@
+page-ticket {
+
+  .banner-img{
+    height: 40%;width: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .green-top{
+    background: green;
+    height: 10px;
+    width: 100%;
+  }
+  .green-bottom{
+    width: 100%;
+    margin-bottom: -5px;
+  }
+  .green-bg{
+    background: green !important;
+  }
+  .box{
+    margin: 30% 5% 0 5%;
+  }
+  .top-margin{
+    margin-top: 3pt;
+  }
+  .round-left{
+    height: 20pt;
+    position: absolute;
+    background: #F6F6F6;
+    width: 23pt;
+    left: 9pt;
+    box-shadow: 2px 0px 0px -1px #999;
+    border-radius: 25px;
+  }
+  .round-right{
+    height: 20pt;
+    position: absolute;
+    background: #F6F6F6;
+    width: 23pt;
+    right: 10pt;
+    box-shadow: -2px 0px 0px -1px #999;
+    border-radius: 25px;
+  }
+  .dotted{
+    position: absolute;
+    width: 75%;
+    border: 1px dashed #dedede;
+    margin-top: 9pt;
+  }
+  ion-card{
+    border-radius: 10px !important;
+  }
+  .grey-bg{
+    background: #F6F6F6!important;
+  }
+}

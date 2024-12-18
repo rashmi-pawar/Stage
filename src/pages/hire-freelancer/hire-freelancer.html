@@ -1,0 +1,108 @@
+<ion-content>
+  <ion-icon (click)="back()" class="back text-white" name="ios-arrow-back"></ion-icon>
+  <!--<img class="cover-img" src="assets/img/freelancer-banner.png">-->
+  <div class="cover-img">
+    <ion-slides #slides (ionSlideDidChange)="bannerChange()">
+      <ion-slide *ngFor="let banner of bannerData">
+        <img class="cover-img" [src]="banner.image&&banner.image!==''?banner.image:'assets/img/freelancer-banner.png'">
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div class="banner-index"><span
+      class="right-align small-text bold-font"></span>[{{bannerIndex}}/{{bannerData.length}}]</div>
+  <div style="margin: 16pt">
+    <round-segment (output)="selectSegment($event)" leftTitle="About" rightTitle="Reviews"></round-segment>
+    <div *ngIf="!isReviewSelected" margin-top>
+      <ion-item no-lines no-padding>
+        <img class="user-img" item-left
+          [src]="hireDetail.profile_pic && hireDetail.profile_pic !=='' && hireDetail.profile_pic !=='http://15.206.103.57/Stage//'?hireDetail.profile_pic:'assets/img/user_default.png'">
+        <div item-start>
+          <div class="small-text bold-font" *ngIf="hireDetail.first_name!=''">{{hireDetail.first_name}}
+            {{hireDetail.last_name}}</div>
+          <div class="small-text bold-font" *ngIf="hireDetail.first_name==''">{{hireDetail.name}}</div>
+          <div class="small-text text-grey">{{hireDetail.occupation}}</div>
+        </div>
+        <button  *ngIf="hireDetail.user_id!==loginUserId" (click)="followUnfollowUser()" item-right ion-button round small>{{followUnFollowText}}</button>
+      </ion-item>
+      <!--<div margin-top class="small-text bold-font">Per Hours - ${{ hireDetail.rate_per_hour }}</div>-->
+      <div text-wrap class="smaller-text text-grey">{{hireDetail.about}}</div>
+
+      <ion-item no-lines no-padding>
+        <div margin-top class="small-text bold-font">Portfolio</div>
+        <button *ngIf="hireDetail.user_id!==loginUserId" item-right ion-button round small (click)="hire()">Chat</button>
+
+      </ion-item>
+      <div *ngIf="isPortfolioEmpty" margin padding-top text-center class="small-text bold-font">No data in portfolio
+      </div>
+      <div *ngIf="!isPortfolioEmpty" class="row" padding-top>
+        <div col-6 margin-top no-padding *ngFor="let data of portfolioList" style="height: 189px;">
+          <ion-card>
+            <img class="freelancer-project"
+              [src]="data.attachment&&data.attachment!==''?data.attachment:'assets/img/freelancer-sub1.png'">
+            <div style="padding: 5pt;height: 45px; white-space: nowrap;
+            overflow: hidden;text-overflow: ellipsis;width: 90%; ">
+              <div *ngIf="data.portfolio_type == 'Project'" class="smaller-text">{{data.title}}</div>
+              <div *ngIf="data.portfolio_type == 'Event'" class="smaller-text">{{data.event_name}}</div>
+              <div *ngIf="data.portfolio_type == 'Equipment'" class="smaller-text">{{data.equipment_name}}</div>
+              <div *ngIf="data.portfolio_type == 'Space'" class="smaller-text">{{data.space_name}}</div>
+              <div *ngIf="data.price&&data.price!==''" class="text-pink smaller-text" style="margin-top: 5pt">
+                ${{data.price}}</div>
+            </div>
+            <button (click)="viewDetail(data)" no-margin ion-button full>View Details</button>
+          </ion-card>
+
+        </div>
+        <!--<div col-6 no-padding>
+          <ion-card>
+            <img class="freelancer-project" src="assets/img/freelancer-sub2.png">
+            <div style="padding: 5pt">
+              <div class="smaller-text">Standard dummy the industry's</div>
+              <div text-right class="text-pink smaller-text">$120</div>
+            </div>
+            <button (click)="viewDetail()" no-margin ion-button full>View Details</button>
+          </ion-card>
+        </div>-->
+      </div>
+
+    </div>
+  </div>
+  <div *ngIf="isReviewSelected">
+    <div margin padding-top class="small-text bold-font">Review<span class="text-grey"
+        style="float: right; font-weight: normal;">[ {{reviewData.length}} reviews ]</span></div>
+    <div *ngFor="let item of reviewData">
+      <div margin>
+        <div class="medium-text bold-font">{{item.comment}}</div>
+        <ion-item no-lines no-padding style="min-height: 1rem">
+          <img item-left no-padding no-margin class="review-user-img"
+            [src]="item.image && item.image !=='' && item.image !=='http://15.206.103.57/Stage//'?item.image:'assets/img/user_default.png'">
+          <div>
+            <div text-wrap class="text-grey smaller-text">{{item.comment}}</div>
+            <div style="margin-top: 5pt" text-wrap class="text-grey smaller-text">by <span
+                class="text-black bold-font">{{reviewData.name}}</span> . 15 min ago</div>
+          </div>
+        </ion-item>
+        <div class="row">
+          <span class="rating-count small-text">{{item.rating}}</span>
+          <span margin-left>
+            <ionic3-star-rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#F29529"
+              defaultColor="#f4f4f4" readonly="true" rating="{{item.rating}}" fontSize="32px">
+            </ionic3-star-rating>
+          </span>
+        </div>
+      </div>
+      <div class="saperator"></div>
+    </div>
+
+  </div>
+
+  <!-- <ion-item style="padding: 16pt" class="small-text text-black" no-lines>
+    <ion-label class="medium-text bold-font text-black">Select your project</ion-label>
+    <ion-select item-right class="medium-text text-black">
+      <ion-option *ngFor="let item of myAllProjects" value="{{item.id}}" (ionSelect)="selectProject(item)">{{item.title}}</ion-option>
+    </ion-select>
+  </ion-item> -->
+
+  <!-- <div class="hire-btn-div">
+    <button ion-button round full (click)="hire()">Chat</button>
+  </div> -->
+</ion-content>

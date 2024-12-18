@@ -1,0 +1,34 @@
+<ion-content>
+  <ion-icon (click)="back()" class="back-icon text-black" style="color:black;" name="ios-arrow-back"></ion-icon>
+  <img class="banner" [src]="spaceData.attachment && spaceData.attachment !=='' && spaceData.attachment !=='http://15.206.103.57/Stage//'?spaceData.attachment:'assets/img/rent-banner.png'">
+  <div padding>
+    <div class="bold-font medium-text">{{spaceData.space_name}}</div>
+    <div margin-top class="small-text text-grey">{{spaceData.description}}</div>
+
+    <div padding-top margin-top class="small-text text-grey">Space Area<span class="right-align normal-font">{{spaceData.area}} Square Feet</span></div>
+    <div margin-top class="small-text text-grey">Start Date<span class="right-align normal-font">{{spaceData.start_date | date: "dd-MMM-yyyy "}}</span></div>
+    <div margin-top class="small-text text-grey">End Date<span class="right-align normal-font">{{spaceData.end_date | date: "dd-MMM-yyyy "}}</span></div>
+
+    <div margin-top padding-top class="medium-text bold-font">Space Price<span class="right-align normal-font">${{spaceData.price}}</span></div>
+
+  </div>
+  <div margin-top class="saperator"></div>
+  <div padding>
+    <div margin-top class="bold-font medium-text">Sub Total <span class="right-align normal-font">${{spaceData.price}}</span></div>
+    <div margin-top class="bold-font medium-text">Total <span class="right-align normal-font">${{spaceData.price}}</span></div>
+  </div>
+  <div margin-top class="saperator"></div>
+  <div padding>
+    <!--<div margin-top class="bold-font big-text">Contact Us <span class="right-align normal-font"><ion-icon name="ios-arrow-up"></ion-icon></span></div>
+    <input margin-top type="text" class="full-input input-line medium-text" placeholder="First Name">
+    <input type="text" class="full-input input-line medium-text" placeholder="Last Name">
+    <input type="email" class="full-input input-line medium-text" placeholder="Email">
+    <input type="number" class="full-input input-line medium-text" placeholder="Mobile">
+    <textarea class="full-input input-line medium-text" placeholder="Message" rows="4"></textarea>-->
+
+    <div class="book-ticket-div" *ngIf="isComplete!='show'">
+      <button (click)="book()" ion-button full round>Book</button>
+    </div>
+  </div>
+
+</ion-content>

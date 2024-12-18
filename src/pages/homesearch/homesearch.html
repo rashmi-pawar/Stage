@@ -1,0 +1,138 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end (click)="openNotification()">
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div padding-left padding-right>
+    <ion-item no-lines style="padding-left: 8pt">
+      <ion-searchbar no-padding class="small-text" [(ngModel)]="searchTxt" [showCancelButton]="false"
+        (ionInput)="searchInput($event)">
+      </ion-searchbar>
+      <!-- <ion-icon item-right no-margin class="filter" name="ios-options" (click)="presentPrompt()"></ion-icon> -->
+    </ion-item>
+  </div>
+<div *ngIf="isShow">
+
+  <div margin-bottom padding-bottom >
+  <div margin text-center class="bigger-text bold-font">Project</div>
+    <div *ngIf="projectData==''" text-center margin-top padding class="bold-font big-text">No Data are available</div>
+    <div *ngFor="let item of projectData">
+      <div margin >
+        <div text-wrap margin-left margin-right class="medium-text bold-font">{{item.title}}</div>
+        <div style="margin-top: 5pt" text-wrap margin-left margin-right class="smaller-text text-grey">
+          {{item.description}}</div>
+        <ion-item no-lines>
+          <div class="smaller-text">
+            <ion-icon class="text-pink bold-font" name="ios-time-outline"></ion-icon><span
+              style="margin-left: 5pt">Close in {{calculateDiff(item)}} Days</span>
+          </div>
+          <div style="margin-top: 5pt" class="smaller-text"><span class="text-pink">
+              <ion-icon class="usd" name="logo-usd"></ion-icon>
+            </span><span style="margin-left: 5pt">${{item.price}}</span></div>
+          <button  (click)="openProjectInner(item)" class="smaller-text" item-right ion-button round small>View
+            Project</button>
+        </ion-item>
+      </div>
+      <div class="saperator"></div>
+    </div>
+  </div>
+
+
+
+  <div margin-bottom padding-bottom>
+    <div margin text-center class="bigger-text bold-font">Event</div>
+    <div *ngIf="eventData==''" text-center margin-top padding class="bold-font big-text">No Data are available</div>
+    <div *ngFor="let item of eventData">
+      <div margin>
+        <div text-wrap margin-left margin-right class="medium-text bold-font">{{item.event_name}}</div>
+        <div style="margin-top: 5pt" text-wrap margin-left margin-right class="smaller-text text-grey">
+          {{item.description}}</div>
+        <ion-item no-lines>
+   
+          <div>
+            <!-- <ion-icon class="smaller-text text-pink bold-font" name="ios-clock-outline"></ion-icon> -->
+            <ion-icon class="smaller-text text-pink bold-font" ios="ios-calendar" md="md-calendar" ></ion-icon>
+            <span
+              style="margin-left: 5px" class="smallest-text">{{item.available_from}}</span>
+          </div>
+          <div>
+            <ion-icon class="smaller-text text-pink bold-font" name="pin"></ion-icon>
+            <span style="margin-left: 5px"
+              class="smallest-text">{{item.event_location}}</span>
+          </div>
+          <button (click)="eventDetail(item)" class="smaller-text" item-right ion-button round small>View
+            Detail</button>
+        </ion-item>
+      </div>
+      <div class="saperator"></div>
+    </div>
+  </div>
+
+
+  <div margin-bottom padding-bottom>
+    <div margin text-center class="bigger-text bold-font">Space</div>
+    <div *ngIf="spacedata==''" text-center margin-top padding class="bold-font big-text">No Data are available</div>
+    <div *ngFor="let item of spacedata">
+      <div margin>
+        <div text-wrap margin-left margin-right class="medium-text bold-font">{{item.space_name}}</div>
+        <div style="margin-top: 5pt" text-wrap margin-left margin-right class="smaller-text text-grey">
+          {{item.description}}</div>
+        <ion-item no-lines>
+   
+          <div>
+            <ion-icon class="smaller-text text-pink bold-font" name="ios-cash"></ion-icon><span
+              style="margin-left: 5px" class="smallest-text">{{item.price}}</span>
+          </div>
+          <div>
+            <ion-icon class="smaller-text text-pink bold-font" name="pin"></ion-icon><span style="margin-left: 5px"
+              class="smallest-text">{{item.space_location}}</span>
+          </div>
+          <button (click)="spaceDetail(item)"  class="smaller-text" item-right ion-button round small>View
+            Detail</button>
+        </ion-item>
+      </div>
+      <div class="saperator"></div>
+    </div>
+  </div>
+
+
+  <div margin-bottom padding-bottom>
+    <div margin text-center class="bigger-text bold-font">Equipment</div>
+    <div *ngIf="equdata==''" text-center margin-top padding class="bold-font big-text">No Data are available</div>
+    <div *ngFor="let item of equdata">
+      <div margin>
+        <div text-wrap margin-left margin-right class="medium-text bold-font">{{item.equipment_name}}</div>
+        <div style="margin-top: 5pt" text-wrap margin-left margin-right class="smaller-text text-grey">
+          {{item.description}}</div>
+        <ion-item no-lines>
+   
+          <div>
+            <ion-icon class="smaller-text text-pink bold-font" name="ios-clock-outline"></ion-icon><span
+              style="margin-left: 5px" class="smallest-text">{{item.event_time}}</span>
+          </div>
+          <div>
+            <ion-icon class="smaller-text text-pink bold-font" name="pin"></ion-icon><span style="margin-left: 5px"
+              class="smallest-text">{{item.equipment_location}}</span>
+          </div>
+          <button (click)="equipmentDetail(item)" class="smaller-text" item-right ion-button round small>View
+            Detail</button>
+        </ion-item>
+      </div>
+      <div class="saperator"></div>
+    </div>
+  </div>
+
+</div>
+</ion-content>

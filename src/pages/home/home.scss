@@ -1,0 +1,66 @@
+page-home {
+  .searchbar .searchbar-search-icon {
+    top: 8px;
+    width: 15px;
+    height: 15px;
+    color: grey;
+  }
+  .searchbar .searchbar-input{
+    padding: 0 45px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    background: #F2F2F2;
+  }
+  .searchbar-ios{
+    background: #F2F2F2;
+    border-radius: 10px;
+    min-height: 35px;
+  }
+  .heading{
+    margin-top: -76pt;
+    font-size: 1.2rem;
+    color: white;
+    padding: 20pt;
+    text-align: center;
+  }
+  .slide-img{
+    width: 50pt;
+    height: 50pt;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .text-yellow{
+    color: #E2CB01;
+  }
+  .text-green{
+    color: green;
+  }
+  .small-user{
+    height: 15pt;width: 15pt;object-fit: cover;border-radius: 5px;
+  }
+  .todayDate{
+    color: #EC5368;
+  }
+  .event-banner{
+    height: 45pt;
+    width: 45pt;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-left: 5px!important;
+  }
+  .rent-banner{
+    height: 60pt;
+    width: 100%;
+    object-fit: cover;
+  }
+  ion-card {
+    border-radius: 10px !important;
+  }
+  .description-text{
+    margin: 5px 0;height: 40px;overflow: hidden;
+  }
+  .project-title{
+    height: 15pt;
+    overflow: hidden;
+  }
+}

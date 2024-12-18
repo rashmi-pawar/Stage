@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end>
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div margin>
+    <div text-center class="bold-font bigger-text">Add Event</div>
+    <div margin-top padding-top class="bold-font big-text">Event Details</div>
+    <input [(ngModel)]="event.event_name" type="text" class="full-input input-line medium-text" placeholder="Event Name">
+    <input [(ngModel)]="event.description" type="text" class="full-input input-line medium-text" placeholder="Event Description">
+    <!-- <input [(ngModel)]="event.event_time" type="text" class="full-input input-line medium-text" placeholder="Event Time"> -->
+  
+    <ion-item no-lines no-padding margin-right style="border-bottom: 1px solid #999999;">
+      <ion-datetime [(ngModel)]="event.event_time" no-margin no-padding placeholder="Event Time" class="select-date medium-text text-grey" item-right displayFormat="h:mm A"></ion-datetime>
+      <ion-icon class="text-grey calender" item-right name="clock"></ion-icon>
+    </ion-item>
+    <input [(ngModel)]="event.event_location" type="text" class="full-input input-line medium-text" placeholder="Event Location">
+    <div margin-top class="medium-text text-grey">Event Date</div>
+    <div class="row">
+      <div col-6 style="padding-right: 5pt !important;">
+        <ion-item no-lines no-padding margin-right>
+          <ion-datetime [(ngModel)]="event.start_date" no-margin no-padding placeholder="Start" class="select-date medium-text text-grey"  max="2050-12-09"  min="{{startDate}}" item-right displayFormat="DD-MMM-YYYY"></ion-datetime>
+          <ion-icon class="text-grey calender" item-right name="calendar"></ion-icon>
+        </ion-item>
+        <div class="saperator" padding-right></div>
+      </div>
+      <div col-6 style="padding-left: 5pt !important;">
+        <ion-item no-lines no-padding>
+          <ion-datetime [(ngModel)]="event.end_date" no-margin no-padding placeholder="End" min="{{startDate}}" class="select-date medium-text text-grey"  max="2050-12-09"  item-right displayFormat="DD-MMM-YYYY"></ion-datetime>
+          <ion-icon class="text-grey calender" item-right name="calendar"></ion-icon>
+        </ion-item>
+        <div class="saperator" padding-right></div>
+      </div>
+    </div>
+
+    <div padding-top margin-top class="bold-font big-text">Ticket Rate</div>
+    <input [(ngModel)]="event.gold_ticket_price" type="number" class="full-input input-line medium-text" placeholder="Gold Ticket Price">
+    <input [(ngModel)]="event.silver_ticket_price" type="number" class="full-input input-line medium-text" placeholder="Silver Ticket Price">
+    <input [(ngModel)]="event.general_ticket_price" type="number" class="full-input input-line medium-text" placeholder="General Ticket Price">
+    <input [(ngModel)]="event.business_ticket_price" type="number" class="full-input input-line medium-text" placeholder="Business Ticket Price">
+
+    <div padding-top margin-top class="bold-font big-text">Event Organizer Details</div>
+    <input [(ngModel)]="event.first_name" type="text" class="full-input input-line medium-text" placeholder="First Name">
+    <input [(ngModel)]="event.last_name" type="text" class="full-input input-line medium-text" placeholder="Last Name">
+    <input [(ngModel)]="event.mobile" type="tel" maxlength="10" class="full-input input-line medium-text" placeholder="Mobile">
+    <input [(ngModel)]="event.email" type="email" class="full-input input-line medium-text" placeholder="Email">
+
+    <div padding-top margin-top class="bold-font big-text">Discount Code</div>
+    <input [(ngModel)]="event.discount_code" type="text" class="full-input input-line medium-text" placeholder="FIRST50">
+
+    <div padding-top margin-top class="bold-font big-text">Number of Tickets Sale</div>
+    <input [(ngModel)]="event.no_of_ticket_sale" type="text" class="full-input input-line medium-text" placeholder="150">
+
+    <div padding-top margin-top class="big-text">Attachment</div>
+    <img class="attachment-img" *ngIf="attachmentToShow && attachmentToShow!==''" [src]="attachmentToShow">
+    <ion-item no-padding no-lines>
+      <label for="attachment">
+        <ion-icon for="attachment" *ngIf="attachmentToShow===''" class="attachment text-grey" name="md-add"></ion-icon>
+      </label>
+      <input id="attachment" class="fileInput" type="file" (change)="getAttachmentEvent($event)"/>
+    </ion-item>
+
+    <div class="btn-div" text-center>
+      <button (click)="postEvent()" ion-button round class="medium-text">Post Event</button>
+    </div>
+  </div>
+</ion-content>

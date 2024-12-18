@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end>
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf="isListEmpty" text-center margin-top padding class="bold-font big-text">No Events are available</div>
+  <div *ngIf="!isListEmpty">
+    <div class="bold-font big-text">Event List</div>
+    <div margin-top *ngFor="let event of eventList">
+      <ion-item no-lines no-padding class="card-item">
+        <img item-left class="equip-img" [src]="event.attachment && event.attachment !=='' && event.attachment !=='http://15.206.103.57/Stage//'?event.attachment:'assets/img/banner.png'">
+        <div item-start class="card-div">
+          <div text-wrap class="bold-font smaller-text">{{event.event_name}}</div>
+          <div style="margin-top: 5pt" text-wrap class="text-grey smaller-text">
+            {{event.description}}
+          </div>
+          <ion-item style="min-height: 1rem" no-padding no-lines class="smaller-text">
+            <div><ion-icon class="text-pink" name="pin"></ion-icon><span class="left-margin">{{event.event_location && event.event_location !==''?event.event_location:'No Location'}}</span></div>
+            <button (click)="openCompleteEventPage(event)" class="view-btn" item-right ion-button clear>View Event
+              <ion-icon class="left-margin" name="ios-arrow-forward"></ion-icon>
+            </button>
+          </ion-item>
+        </div>
+      </ion-item>
+    </div>
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+</ion-content>

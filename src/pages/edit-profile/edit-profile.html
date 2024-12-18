@@ -1,0 +1,127 @@
+<ion-header *ngIf="showArrow=='showMenu'">
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end (click)="openNotification()">
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <img class="bg" src="assets/img/profile-bg.png">
+    <div class="row" text-center>
+      <ion-icon (click)="back()" class="back text-white" name="ios-arrow-back" *ngIf="showArrow!=='showMenu'"></ion-icon>
+      <ion-title padding text-center><span class="big-text bold-font">View Profile</span></ion-title>
+    </div>
+    <div text-center class="profile-img-div">
+      <img (click)="openPicker()" class="profile-img"
+        [src]="profileImgToShow && profileImgToShow!==''?profileImgToShow:'assets/img/user_default.png'">
+      <ion-icon (click)="openPicker()" class="text-pink edit-icon" name="md-create"></ion-icon>
+    </div>
+
+    <div class="edit-div">
+      <input [(ngModel)]="firstName" type="text" class="full-input input-line medium-text" placeholder="First Name">
+      <input [(ngModel)]="lastName" type="text" class="full-input input-line medium-text" placeholder="Last Name">
+      <input [(ngModel)]="email" readonly type="email" class="full-input input-line medium-text" placeholder="Email">
+      <!--<input [(ngModel)]="password" type="password" class="full-input input-line medium-text" placeholder="Password">-->
+      <ion-select [(ngModel)]="country" style="max-width: 100%;" class="text-black medium-text input-line"
+      placeholder="Country">
+        <!-- <ion-option value="country">Country</ion-option> -->
+        <ion-option *ngFor="let country of countryList" value="{{country.name}}" (ionSelect)="selectCountry($event)" >{{country.name}}</ion-option>
+      </ion-select>
+      <ion-select [(ngModel)]="state" style="max-width: 100%;" class="text-black medium-text input-line"
+      placeholder="State">
+        <ion-option value="{{state}}" *ngIf="stateNew!=''">{{stateNew}}</ion-option>
+        <!-- <ion-option value="state">State</ion-option> -->
+        <ion-option  *ngFor="let state of stateList" value="{{state.name}}" (ionSelect)="selectState($event)">{{state.name}}</ion-option>
+      </ion-select>
+      <ion-select [(ngModel)]="city" style="max-width: 100%;" class="text-black medium-text input-line"
+      placeholder="City">
+        <ion-option value="{{city}}" *ngIf="stateNew!=''">{{cityNew}}</ion-option>
+        <!-- <ion-option value="city">City</ion-option> -->
+        <ion-option *ngFor="let city of cityList" (ionSelect)="selectCity($event)" value="{{city.name}}">{{city.name}}</ion-option>
+      </ion-select>
+
+
+      <input [(ngModel)]="address1" type="text" class="full-input input-line medium-text" placeholder="Address Line 1">
+      <input [(ngModel)]="address2" type="text" class="full-input input-line medium-text" placeholder="Address Line 2">
+
+      <ion-select style="max-width: 100%;" [(ngModel)]="gender" class="text-black medium-text input-line"
+        placeholder="Gender">
+        <!-- <option value="">Gender</option> -->
+        <ion-option value="Male">Male</ion-option>
+        <ion-option value="Female">Female</ion-option>
+      </ion-select>
+      <div>
+        <ion-datetime [(ngModel)]="dob" no-margin no-padding placeholder="DOB"
+          class="input-line full-input medium-text text-black" max="{{dobMax}}" displayFormat="DD-MMM-YYYY">
+        </ion-datetime>
+      </div>
+
+      <input [(ngModel)]="account_no" type="number" class="full-input input-line medium-text"
+        placeholder="Account Number">
+      <input [(ngModel)]="bank_name" type="text" class="full-input input-line medium-text" placeholder="Bank Name">
+      <input [(ngModel)]="ifsc_code" type="text" class="full-input input-line medium-text" placeholder="IFSC Code">
+
+      <textarea [(ngModel)]="occupation" class="full-input input-line" placeholder="Occupation" rows="3"></textarea>
+      <textarea [(ngModel)]="about" class="full-input input-line" placeholder="About" rows="3"></textarea>
+
+      <input [(ngModel)]="hourly_rate_from" style="width: 45%;margin: 0 0 0 26px;" type="number" class="full-input input-line medium-text" placeholder="Hourly rate from">
+      <input [(ngModel)]="hourly_rate_to" style="width: 45%; float: left;" type="number" class="full-input input-line medium-text" placeholder="Hourly rate to">
+
+      <ion-select style="max-width: 100%;" (ionChange)="selectCategory(category_id)" multiple="true"
+        [(ngModel)]="category_id" class="text-black medium-text input-line" placeholder="Category">
+        <ion-option *ngFor="let item of allCategories" value="{{item.id}}">
+          {{item.title}}</ion-option>
+      </ion-select>
+
+
+      <ion-select style="max-width: 100%;" [(ngModel)]="subcategory_id" multiple="true"
+        class="text-black medium-text input-line" placeholder="SubCategory">
+        <ion-option *ngFor="let item of allSubCategories" value="{{item.id}}">{{item.title}}</ion-option>
+      </ion-select>
+
+      <!-- <div text-center class="profile-img-div">
+        <img (click)="openPickerportofolio()" class="profile-img"
+          [src]="profileImgToShow && profileImgToShow!==''?profileImgToShow:'assets/img/user_default.png'">
+        <ion-icon (click)="openPickerportofolio()" class="text-pink edit-icon attachment" name="md-create"></ion-icon>
+      </div> -->
+
+      <!-- <div text-center class="profile-img-div">
+      <ion-item no-padding no-lines>
+        <label for="attachment">
+          <ion-icon for="attachment" (click)="openPickerportofolio()" class="attachment text-grey" name="md-add"></ion-icon>
+        </label>
+        <input id="attachment" class="fileInput" type="file"/>
+      </ion-item>
+      </div>
+      <div *ngIf="profileImgportofolioToShow">
+      <img *ngFor="let item of profileImages" (click)="openPickerportofolio()" class="attachment-img"
+          [src]="item">
+      </div> -->
+
+      <div padding-top margin-top class="big-text">Attachment</div>
+      <img class="attachment-img" [src]="attachmentToShow" *ngIf="attachmentToShow">
+      <ion-item no-padding no-lines>
+        <label for="attachment">
+          <ion-icon for="attachment" class="attachment text-grey" name="md-add">
+          </ion-icon>
+        </label>
+        <input id="attachment" class="fileInput" type="file" (change)="getAttachmentEvent($event)" multiple="multiple" />
+      </ion-item>
+
+      <div class="save-btn-div">
+        <button (click)="update()" ion-button full round>Save</button>
+      </div>
+      <div (click)="deleteAccount()" text-center padding class="small-text text-dark">Delete my account</div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end>
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-label class="bold-font medium-text" text-center>Payment Details</ion-label>
+  <ion-label class="bold-font medium-text" margin-top padding-top>Total Price</ion-label>
+  <ion-label class="text-pink bold-font price-txt" margin-top>${{paymentData.amount}}</ion-label>
+  <ion-label class="medium-bold medium-text" margin-top padding-top>Payment Method</ion-label>
+  <div class="row">
+    <div col-6 class="left-btn">       
+      <button (click)="paypal()" no-margin ion-button full [ngClass]="isPaypal?'yellow-bg':'purple_bg'"
+              class="payment-btn txt">PayPal
+        <ion-icon margin-left class="bold-font" name="ios-checkmark-circle-outline"></ion-icon>
+      </button>
+    </div>
+    <div col-6 class="right-btn">
+      <button class="bold-font payment-btn" (click)="cardPay()" ion-button full [ngClass]="isPaypal?'purple_bg':'yellow-bg'">Card
+        <ion-icon margin-left class="bold-font" name="ios-checkmark-circle-outline"></ion-icon>
+      </button>
+    </div>
+  </div>
+
+  <div [hidden]="!isPaypal">
+      <div padding margin id="paypal-button"></div>
+    </div>
+  
+  <div [hidden]="isPaypal">
+  <ion-label class="medium-bold medium-text" margin-top padding-top>Card Number</ion-label>
+  <ion-item no-padding no-lines class="box text-grey">
+    <ion-icon item-left class="card-icon" name="card"></ion-icon>
+    <input item-start no-margin type="tel" [(ngModel)]="cardNumber" maxlength="16" placeholder="  ****   ******   ****" style="padding: 5pt" class="full-input medium-text">
+  </ion-item>
+  <div class="row no-padding">
+    <div col-7 class="no-padding">
+      <ion-label class="medium-bold medium-text" margin-top>Valid Until</ion-label>
+      <div class="box" margin-right>
+        <ion-datetime class="mycard" min="2021-07-10" max="2050-10-31" displayFormat="MM/YYYY" pickerFormat="MM/YYYY"
+          [(ngModel)]="validity" placeholder="Month / Year"></ion-datetime>
+        <!-- <input item-start no-margin type="text" placeholder="Month/Year" padding class="full-input medium-text"> -->
+      </div>
+    </div>
+    <div col-5 class="no-padding">
+      <ion-label class="medium-bold medium-text" margin-top>CVV</ion-label>
+      <div class="box">
+        <input item-start no-margin type="tel" [(ngModel)]="cvv" maxlength="3" placeholder=" ***" padding class="full-input medium-text">
+      </div>
+    </div>
+  </div>
+  <ion-label class="medium-bold medium-text" margin-top>Card Holder Name</ion-label>
+  <div class="box">
+    <input item-start no-margin type="text" placeholder="Name Here" padding class="full-input medium-text">
+  </div>
+  <div class="row no-padding">
+    <div col-6>
+      <ion-item class="trans-bg" no-padding no-lines>
+        <ion-label class="medium-text text-black label-select" >Save Card</ion-label>
+        <ion-checkbox item-left [(ngModel)]="cardChecked"></ion-checkbox>
+      </ion-item>
+    </div>
+    <div col-6>
+      <button (click)="storedCard()" ion-button full class="footer-btn medium-text" padding *ngIf="saveData">Use Saved Card</button>
+    </div>
+  </div>
+  <div text-center class="pay-now">
+    <button (click)="payNow()" margin-top ion-button full round [disabled]="!isenabled" >Proceed to Pay</button>
+  </div>
+</div>
+
+  <!-- <div class="proceed-btn-div" text-center>
+    <button (click)="openPaymentDetail()" ion-button full round>Proceed to Pay</button>
+  </div> -->
+</ion-content>

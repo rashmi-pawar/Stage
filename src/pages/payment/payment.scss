@@ -1,0 +1,41 @@
+page-payment {
+  .price-txt{
+    font-size: 3rem;
+  }
+  .left-btn{
+    padding: 0 5pt 0 0;
+  }
+  .right-btn{
+    padding: 0 0 0 5pt;
+  }
+  .payment-btn{
+    border-radius: 5px;
+    font-size: 1.8rem!important;
+  }
+  .box{
+    border: 1px solid #efefef !important;
+  }
+  .card-icon{
+    font-size: 3rem;
+    color: #252525;
+    margin: 0 8pt !important;
+  }
+  .no-padding{
+    padding: 0;
+  }
+  .proceed-btn-div{
+    margin: 30pt 60pt;
+  }
+  .purple_bg{
+    background-color: #ec536880 !important;
+  }
+  .item-cover {
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+}

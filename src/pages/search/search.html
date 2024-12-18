@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end (click)="openNotification()">
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div padding-left padding-right>
+    <ion-item no-lines style="padding-left: 8pt">
+      <ion-searchbar no-padding class="small-text" [(ngModel)]="searchTxt" [showCancelButton]="false"
+        (ionInput)="searchInput($event)">
+      </ion-searchbar>
+      <ion-icon item-right no-margin class="filter" name="ios-options" (click)="presentPrompt()"></ion-icon>
+    </ion-item>
+  </div>
+
+  <div margin text-center class="bigger-text bold-font">Search by</div>
+
+  <div padding-left padding-right>
+    <round-segment (output)="selectSegment($event)" leftTitle="Projects" rightTitle="Freelancers"></round-segment>
+  </div>
+  <div margin-bottom padding-bottom *ngIf="!isFreeLancerSelected">
+    <div *ngIf="isProjectListEmpty" text-center margin-top padding class="bold-font big-text">No Data are available</div>
+    <div *ngFor="let item of projectData">
+      <div margin>
+        <div text-wrap margin-left margin-right class="medium-text bold-font">{{item.title}}</div>
+        <div style="margin-top: 5pt" text-wrap margin-left margin-right class="smaller-text text-grey">
+          {{item.description}}</div>
+        <ion-item no-lines>
+          <div class="smaller-text">
+            <ion-icon class="text-pink bold-font" name="ios-time-outline"></ion-icon><span
+              style="margin-left: 5pt">Close in {{calculateDiff(item)}} Days</span>
+          </div>
+          <div style="margin-top: 5pt" class="smaller-text"><span class="text-pink">
+              <ion-icon class="usd" name="logo-usd"></ion-icon>
+            </span><span style="margin-left: 5pt">${{item.price}}</span></div>
+          <button (click)="openProject(item)" class="smaller-text" item-right ion-button round small>View
+            Project</button>
+        </ion-item>
+      </div>
+      <div class="saperator"></div>
+    </div>
+  </div>
+  <div *ngIf="isFreeLancerSelected">
+    <div *ngIf="isFreelancerListEmpty" text-center margin-top padding class="bold-font big-text">No Data are available</div>
+    <div *ngFor="let item of freelancerData">
+      <div padding (click)="goHire(item)">
+        <ion-item no-lines>
+          <img class="freelancer-img" item-left [src]="item.profile_pic && item.profile_pic !=='' && item.profile_pic !=='http://15.206.103.57/Stage//'?item.profile_pic:'assets/img/user_default.png'">
+          <div item-start>
+            <div class="small-text bold-font" *ngIf="item.first_name!=''">{{ item.first_name }} {{ item.last_name }}</div>
+            <div class="small-text bold-font" *ngIf="item.first_name==''">{{ item.name }}</div>
+            <div style="margin-top: 5px" class="text-pink normal-font bold-font smaller-text">${{ item.rate_per_hour }}/Hour</div>
+          </div>
+          <ion-icon item-right name="ios-arrow-forward"></ion-icon>
+        </ion-item>
+        <div class="row" style="margin-left: 45pt;margin-top: -3pt">
+          <span class="rating-count smaller-text" *ngIf="item.avg_rating==''">0</span>
+          <span class="rating-count smaller-text" *ngIf="item.avg_rating!=''">{{ item.avg_rating }}</span>
+          <span style="margin-left: 5px">
+            <ionic3-star-rating *ngIf="item.avg_rating==''" activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#F29529"
+              defaultColor="#E0E0E0" readonly="true" rating="0" fontSize="32px">
+            </ionic3-star-rating>
+            <ionic3-star-rating *ngIf="item.avg_rating!=''" activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#F29529"
+              defaultColor="#E0E0E0" readonly="true" rating="{{ item.avg_rating }}" fontSize="32px">
+            </ionic3-star-rating>
+          </span>
+          <span class="smaller-text text-grey normal-font" style="padding: 5pt">[{{ item.total_review }} reviews]</span>
+        </div>
+      </div>
+      <div class="saperator"></div>
+    </div>
+  </div>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

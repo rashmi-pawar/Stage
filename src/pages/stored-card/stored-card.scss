@@ -1,0 +1,41 @@
+page-stored-card {
+    .modal {
+        background: white;
+        width: 100vw;
+        color: black;
+        float: right;
+        border-radius: 20px 20px 0px 0px;
+      }
+    .content {
+        background-color: #00000070;
+    }
+    .modal .item .transparent {
+        margin-right: 0px;
+        font-size: 1.8rem;
+    }
+    .main .item .item-inner .checkbox {
+        margin-right: 0px;
+    }    
+    .main .item .item-inner {
+        padding-right: 0.4em;
+    }        
+    .filter_title {
+        border-bottom: 1px solid #D1D1D1;
+        margin-bottom: 2px;
+    }        
+    .apply_btn {
+        margin: 23rem 20px 0px;
+    }    
+    .item-radio-checked.item-md ion-label {
+        color: #000000;
+    }    
+    .radio-md .radio-checked {
+        border-color: #000000;
+    }
+    .radio-md .radio-inner {
+        background-color: #000000;
+    }        
+    .item span {
+        display: block;
+    }
+}

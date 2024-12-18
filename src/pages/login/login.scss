@@ -1,0 +1,32 @@
+page-login {
+  .set-bg{
+    background-image: url("../assets/img/bg-img.png");
+    background-size: 100% 100%;
+  }
+  .stage-icon{
+    padding: 5pt 0pt 10pt 0pt;
+    width: 30%;
+    margin-top: 25pt;
+  }
+  .login{
+    margin-top: 25pt;
+  }
+  .input-div{
+    background: white;
+    border-radius: 10px;
+    margin: 10pt 20pt 20pt 10pt;
+    padding: 0pt 15pt 20pt 10pt;
+  }
+  ion-item{
+    background: transparent !important;
+  }
+  .login-btn{
+    padding: 0 45pt;margin-top: 15pt;font-weight: bold;
+  }
+  .forgot-pass{
+    margin-top: 15pt;
+  }
+  .top-margin{
+    margin-top: 28pt;
+  }
+}

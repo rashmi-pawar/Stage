@@ -1,0 +1,12 @@
+<ion-content class="set-bg">
+  <div text-center class="main-box">
+    <img class="stage-icon" src="assets/img/stage-header.png">
+    <div (click)="openLogin()" class="btn-div" text-center><button ion-button round full>Log in</button></div>
+    <div (click)="openSignUp()" class="btn-div" text-center><button class="register-btn" ion-button round clear full>Register</button></div>
+    <div class="social-div">
+      <span><img (click)="fbLogin()" class="social-icon" src="assets/img/fb.png"></span>
+      <span margin-left margin-right><img class="social-icon" src="assets/img/google-btn.png" (click)="googleLogin()"></span>
+      <!-- <span><img class="social-icon" src="assets/img/twitter.png"></span> -->
+    </div>
+  </div>
+</ion-content>

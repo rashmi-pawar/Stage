@@ -1,0 +1,23 @@
+page-notification {
+  .notif-icon{
+    border: 1px solid #EC5368;
+    font-size: 5rem;
+    border-radius: 50%;
+    padding: 2pt 8pt;
+  }
+  .card-item{
+    margin: 10pt 0;
+    padding: 8pt;
+    width: 100%;
+    border-radius: 5px;
+  }
+  .label{
+    margin: 0;
+  }
+  .item.item[no-lines] .item-inner{
+    margin: 0;
+  }
+  .top-margin{
+    margin-top: 5pt;
+  }
+}

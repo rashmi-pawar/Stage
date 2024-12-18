@@ -1,0 +1,33 @@
+page-entry {
+  .set-bg{
+    background-image: url("../assets/img/bg.jpg");
+    background-size: 100% 100%;
+  }
+  .main-box{
+    /*background: white;
+    margin: 100pt 15pt;
+    padding: 20pt 10pt;
+    border-radius: 10px;*/
+    background: white;
+    margin: 0 30pt;
+    padding: 20pt 10pt;
+    border-radius: 10px;
+    position: absolute;
+    top: 28%;
+  }
+  .btn-div{
+    margin: 13pt;
+    button{
+      font-weight: 600;
+    }
+  }
+  .register-btn{
+    border: 1px solid #8916FC;
+    color: #8916FC;
+  }
+  .stage-icon{
+    padding: 5pt 0pt 10pt 0pt;
+    width: 45%;
+  }
+
+}

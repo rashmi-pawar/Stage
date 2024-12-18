@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end (click)="presentPopover($event)">
+      <button padding ion-button icon-only>
+        <!-- <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon> -->
+        <ion-icon class="text-black" ios="ios-more" md="md-more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div *ngIf="isListEmpty" class="bold big-text" text-center padding margin>No chats are available</div>
+  <div *ngIf="!isListEmpty">
+    <div *ngFor="let chat of chats">
+    <div *ngIf="chat.senderUserId !== me.id">
+      <ion-item no-padding no-lines>
+        <img class="other-user-img" [src]="otherUser.image&&otherUser.image!==''?otherUser.image:'assets/img/user_default.png'">
+        <div class="other-div-content smaller-text">
+          <div class="text-darkgrey">{{util.timeSince(chat.date)}}</div>
+          <div margin-top text-wrap class="message-left text-dark">{{chat.message}}</div>
+        </div>
+      </ion-item>
+    </div>
+
+    <div *ngIf="chat.senderUserId === me.id" margin-top>
+      <ion-item text-right no-padding no-lines>
+        <div class="my-div-content smaller-text">
+          <div class="text-darkgrey">{{util.timeSince(chat.date)}}</div>
+          <div class="message-right"><span text-wrap class="text-white message small-text">{{chat.message}}</span></div>
+        </div>
+      </ion-item>
+    </div>
+  </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <div class="type-div">
+    <input [(ngModel)]="msg" padding placeholder="Type a message..." type="text" class="chat-input full-input medium-text text-grey">
+    <div class="chat-icons-div">
+      <span>
+        <ion-icon class="chat-icon text-grey" name="attach"></ion-icon>
+      </span>
+      <span>
+        <ion-icon class="chat-icon text-grey" name="mic"></ion-icon>
+      </span>
+      <span>
+        <ion-icon (click)="sendMsg()" class="chat-icon text-grey" name="md-arrow-round-forward"></ion-icon>
+      </span>
+    </div>
+  </div>
+</ion-footer>

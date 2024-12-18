@@ -1,0 +1,94 @@
+<ion-menu [content]="content" type="overlay" (ionOpen)="openMenu()">
+  <ion-content>
+    <ion-list>
+      <ion-item no-lines class="background-pink user-div" (click)="goProfile()" menuToggle> 
+        <div item-start>
+          <img class="user-img" [src]="userData.image && userData.image!==''?userData.image:'assets/img/user_default.png'">
+        </div>
+        <div>
+          <h3 class="text-white">{{userData.username && userData.username !==''?userData.username:'No Name'}}</h3>
+          <div text-wrap class="text-white bold-font small-text" style="margin-top: 5px">{{userData.email && userData.email !== ''?userData.email:'braydenaaron@mail.com'}}</div>
+        </div>
+        <ion-icon item-right class="text-white" name="ios-arrow-forward"></ion-icon>
+      </ion-item>
+
+      <div margin-top margin-bottom>
+        <ion-item menuToggle (click)="openPage('TabsPage')" no-lines class="small-text">
+          <ion-icon class="menu-icons" item-left name="ios-home-outline"></ion-icon>
+          <div>Home</div>
+        </ion-item>
+
+        <ion-item menuToggle (click)="openPageNew('ProfilePage')" no-lines class="small-text">
+          <ion-icon class="menu-icons" item-left name="ios-contact-outline"></ion-icon>
+          <div>My Profile</div>
+        </ion-item>
+        <ion-item menuToggle (click)="openPageNew('EditProfilePage')" no-lines class="small-text">
+          <ion-icon class="menu-icons" item-left name="ios-contact-outline"></ion-icon>
+          <div>Edit Profile</div>
+        </ion-item>
+        <ion-item menuToggle (click)="openPage('ProjectListPage')" no-lines class="small-text">
+          <ion-icon class="menu-icons" item-left name="ios-cube-outline"></ion-icon>
+          <div>My Projects</div>
+        </ion-item>
+        <ion-item menuToggle (click)="openPage('AddProjectPage')" no-lines class="small-text">
+          <img item-left class="menu-img" src="assets/icon/job.png">
+          <div [ngClass]="platform.is('ios')?'':'menu-title'">Post a Project</div>
+        </ion-item>
+        <ion-item menuToggle (click)="openPage('SearchPage')" no-lines class="small-text">
+          <img item-left class="menu-img" src="assets/icon/hiring.png">
+          <div [ngClass]="platform.is('ios')?'':'menu-title'">Hire a Performer</div>
+        </ion-item>
+        <ion-item menuToggle (click)="openPage('AddEventPage')" no-lines class="small-text">
+          <ion-icon class="menu-icons" item-left name="ios-add-circle-outline"></ion-icon>
+          <div>Create an Events</div>
+        </ion-item>
+        <ion-item menuToggle (click)="openPage('EventListPage')" no-lines class="small-text">
+          <img item-left class="menu-img" src="assets/icon/ticket.png">
+          <div [ngClass]="platform.is('ios')?'':'menu-title'">My Events</div>
+        </ion-item>
+        <ion-item menuToggle (click)="openPage('AddSpacePage')" no-lines class="small-text">
+          <ion-icon class="menu-icons" item-left name="ios-add-circle-outline"></ion-icon>
+          <div>Add Space</div>
+        </ion-item>
+        <ion-item menuToggle (click)="openPage('SpaceListPage')" no-lines class="small-text">
+          <img item-left class="menu-img" src="assets/icon/cricket-ground.png">
+          <div [ngClass]="platform.is('ios')?'':'menu-title'">My Space</div>
+        </ion-item>
+        <ion-item menuToggle (click)="openPage('AddEquipmentPage')" no-lines class="small-text">
+          <ion-icon class="menu-icons" item-left name="ios-add-circle-outline"></ion-icon>
+          <div>Add Equipment</div>
+        </ion-item>
+        <ion-item menuToggle (click)="openPage('EquipmentListPage')" no-lines class="small-text">
+          <img item-left class="menu-img" src="assets/icon/equipment.png">
+          <div [ngClass]="platform.is('ios')?'':'menu-title'">My Equipment</div>
+        </ion-item>
+        <ion-item menuToggle (click)="openPage('MybookingPage')" no-lines class="small-text">
+          <ion-icon item-left class="menu-icons" name="ios-calendar-outline"></ion-icon>
+          <div>My Booking</div>
+        </ion-item>
+        <ion-item menuToggle (click)="openPage('ContactUsPage')" no-lines class="small-text">
+          <ion-icon class="menu-icons" item-left name="ios-call-outline"></ion-icon>
+          <div>Contact Us</div>
+        </ion-item>
+        <ion-item menuToggle (click)="openPage('FaqPage')" no-lines class="small-text">
+          <ion-icon class="menu-icons" item-left name="ios-help-circle-outline"></ion-icon>
+          <div>FAQ</div>
+        </ion-item>
+        <ion-item menuToggle (click)="openPage('ChangePasswordPage')" no-lines class="small-text">
+          <ion-icon class="menu-icons" item-left name="ios-lock-outline"></ion-icon>
+          <div>Change Password</div>
+        </ion-item>
+        <ion-item menuToggle (click)="socialShare()" no-lines class="small-text">
+          <img item-left class="menu-img" src="assets/icon/share.png">
+          <div [ngClass]="platform.is('ios')?'':'menu-title'">Share With Friends</div>
+        </ion-item>
+        <ion-item menuToggle (click)="logout()" margin-bottom no-lines class="small-text">
+          <ion-icon class="menu-icons" item-left name="ios-arrow-dropleft-outline"></ion-icon>
+          <div>Logout</div>
+        </ion-item>
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #content [root]="rootPage"></ion-nav>

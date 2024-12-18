@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "685542641455",
+    "firebase_url": "https://stage-278ec-default-rtdb.firebaseio.com",
+    "project_id": "stage-278ec",
+    "storage_bucket": "stage-278ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685542641455:android:6b0f4946021a7f00a01bda",
+        "android_client_info": {
+          "package_name": "com.alpha.stage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "685542641455-9ulbbuiin69l5rg3654js70e2ge646dp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChLSyx9ed2a3u-BMyxdUnCftar51OOzIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "685542641455-9ulbbuiin69l5rg3654js70e2ge646dp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "685542641455-uo023auaavtrcf4k0ff8p5oaptkgcjlp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.alpha.stage"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

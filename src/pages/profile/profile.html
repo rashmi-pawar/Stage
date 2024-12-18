@@ -1,0 +1,165 @@
+<ion-header *ngIf="showArrow=='showMenu'">
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end (click)="openNotification()">
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <img class="bg" src="assets/img/profile-bg.png">
+    <div class="row" text-center>
+      <ion-icon (click)="back()" class="back text-white" name="ios-arrow-back" *ngIf="showArrow=='showArrow'">
+      </ion-icon>
+      <ion-title padding text-center><span class="big-text bold-font">View Profile</span></ion-title>
+    </div>
+    <div text-center class="profile-img-div"><img class="profile-img"
+        [src]="userData.image && userData.image!==''?userData.image:'assets/img/user_default.png'"></div>
+  </div>
+
+  <div padding-left padding-right>
+    <ion-item no-lines>
+      <div>
+        <div class="big-text bold-font">{{userData.username}}</div>
+        <div style="margin-top: 5px" class="text-grey smaller-text">{{userData.occupation}}</div>
+      </div>
+      <button (click)="editProfile()" class="smallest-text edit-btn" no-padding item-right ion-button small round>Edit
+        Profile<span style="padding-left: 5px">
+          <ion-icon name="md-create"></ion-icon>
+        </span></button>
+    </ion-item>
+
+    <round-segment margin-left margin-right (output)="selectSegment($event)" leftTitle="Profile" rightTitle="Reviews">
+    </round-segment>
+
+  </div>
+
+  <div *ngIf="!isReviewSelected">
+    <div margin-left margin-right padding>
+      <div class="big-text bold-font">Total wallet amount </div>
+      <div class="totalAmount">${{userData.total_amount}}</div>
+    </div>
+    <div margin-left margin-right padding>
+      <div class="big-text bold-font">About</div>
+      <div text-wrap style="margin-top: 5pt" class="text-grey smaller-text">
+        {{userData.about | slice:0:showlimit}}
+        <span class="text-pink" style="margin-left: 5pt" *ngIf="show=='yes' && testlen>100" (click)="showMorego()">Show
+          More</span>
+        <span class="text-pink" style="margin-left: 5pt" *ngIf="show=='no'" (click)="showLessgo()">Show Less</span>
+      </div>
+    </div>
+    <div style="padding-left: 8pt" margin class="row" text-center>
+      <div col-3>
+        <circle-progress [percent]="totalresponse && totalresponse!=='NaN'?totalresponse:'0'" [radius]="32"
+          [outerStrokeWidth]="5" [innerStrokeWidth]="5" [outerStrokeColor]="'#EC5368'" [innerStrokeColor]="'#f4f4f4'"
+          [animation]="true" [subtitleFontSize]="30" [showSubtitle]="false" [showUnits]="true" [titleColor]="'#EC5368'">
+        </circle-progress>
+        <div class="smaller-text text-grey">Response Rate</div>
+      </div>
+
+      <div col-3>
+        <circle-progress [percent]="totalorder_complition && totalorder_complition!=='NaN'?totalorder_complition:'0'"
+          [radius]="32" [outerStrokeWidth]="5" [innerStrokeWidth]="5" [outerStrokeColor]="'#EC5368'"
+          [innerStrokeColor]="'#f4f4f4'" [animation]="true" [subtitleFontSize]="30" [showSubtitle]="false"
+          [showUnits]="true" [titleColor]="'#EC5368'">
+        </circle-progress>
+        <div class="smaller-text text-grey">Order Completion</div>
+      </div>
+
+      <div col-3>
+        <circle-progress [percent]="totalontime_delivery && totalontime_delivery!=='NaN'?totalontime_delivery:'0'"
+          [radius]="32" [outerStrokeWidth]="5" [innerStrokeWidth]="5" [outerStrokeColor]="'#EC5368'"
+          [innerStrokeColor]="'#f4f4f4'" [animation]="true" [subtitleFontSize]="30" [showSubtitle]="false"
+          [showUnits]="true" [titleColor]="'#EC5368'">
+        </circle-progress>
+        <div class="smaller-text text-grey">On-Time Delivery</div>
+      </div>
+
+      <div col-3>
+        <circle-progress [percent]="positive_rating && positive_rating!=='NaN'?positive_rating:'0'" [radius]="32"
+          [outerStrokeWidth]="5" [innerStrokeWidth]="5" [outerStrokeColor]="'#EC5368'" [innerStrokeColor]="'#f4f4f4'"
+          [animation]="true" [subtitleFontSize]="30" [showSubtitle]="false" [animationDuration]="300" [showUnits]="true"
+          [titleColor]="'#EC5368'">
+        </circle-progress>
+        <div class="smaller-text text-grey">Positive Rating</div>
+      </div>
+    </div>
+
+
+    
+    <!-- <div margin-left padding-left class="big-text bold-font">Portfolio</div>
+    <div *ngIf="isPortfolioEmpty" class="bold-font medium-text text-black" margin text-center>No Portfolio data are
+      available</div>
+    <div style="padding-left: 5pt" margin-bottom padding-bottom>
+      <ion-slides slidesPerView="2.9">
+        <ion-slide *ngFor="let item of portfolioData">
+          <ion-card (click)="goProjectInner(item.portfolio_type,item)">
+            <img class="banner"
+              [src]="item.attachment&&item.attachment!==''?item.attachment:'assets/img/rent-banner.png'">
+            <div *ngIf="item.portfolio_type == 'Project'" text-center style="padding: 5pt"
+              class="bold-font smallest-text">{{item.title}}</div>
+            <div *ngIf="item.portfolio_type == 'Event'" text-center style="padding: 5pt"
+              class="bold-font smallest-text">{{item.event_name}}</div>
+            <div *ngIf="item.portfolio_type == 'Equipment'" text-center style="padding: 5pt"
+              class="bold-font smallest-text">{{item.equipment_name}}</div>
+            <div *ngIf="item.portfolio_type == 'Space'" text-center style="padding: 5pt"
+              class="bold-font smallest-text">{{item.space_name}}</div>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+    </div> -->
+
+    <div margin-left padding-left class="big-text bold-font">Portfolio Images</div>
+    <div *ngIf="isPortfolioImageEmpty" class="bold-font medium-text text-black" margin text-center>No Portfolio image
+      are available</div>
+    <div style="padding-left: 5pt" margin-bottom padding-bottom>
+      <ion-slides slidesPerView="2.9">
+        <ion-slide *ngFor="let item of profileData" style="margin: 24px 0 0 0;">
+          <ion-card>
+            <div class="delete-close" (click)="closeDelete(item.image)">
+              <ion-icon ios="ios-close-circle" md="md-close-circle" class="close-icon"></ion-icon>
+            </div>
+            <img class="banner2"
+              [src]="item.image&&item.image!==''?'https://alphawizztest.tk/Stage//uploads/user/'+item.image:'assets/img/rent-banner.png'">
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+  </div>
+  <div *ngIf="isReviewSelected">
+    <div *ngIf="isReviewEmpty" class="bold-font medium-text" text-center margin>No Reviews</div>
+    <div *ngFor="let item of reviewData">
+      <div margin padding-left padding-right>
+        <div class="medium-text bold-font">{{item.comment}}</div>
+        <ion-item no-lines no-padding style="min-height: 1rem">
+          <img item-left no-padding no-margin class="review-user-img"
+            [src]="item.image && item.image !=='' && item.image !=='http://15.206.103.57/Stage//'?item.image:'assets/img/user_default.png'">
+          <div>
+            <div text-wrap class="text-grey smaller-text">{{item.comment}}</div>
+            <div style="margin-top: 5pt" text-wrap class="text-grey smaller-text">by <span
+                class="text-black bold-font">{{item.name}}</span> - 15 min ago</div>
+          </div>
+        </ion-item>
+        <div class="row">
+          <span class="rating-count small-text">{{item.rating}}</span>
+          <span class="left-margin">
+            <ionic3-star-rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#F29529"
+              defaultColor="#f4f4f4" readonly="true" rating="{{item.rating}}" fontSize="32px">
+            </ionic3-star-rating>
+          </span>
+        </div>
+      </div>
+      <div class="saperator"></div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,18 @@
+round-segment {
+  .segment-div{
+    border-radius: 20px;
+    border: 1px solid #EC5368;
+  }
+  .left{
+    border-radius: 20px 0 0 20px;
+    color: #EC5368;padding: 6pt;
+  }
+  .right{
+    border-radius: 0 20px 20px 0;
+    color: #EC5368;padding: 6pt;
+  }
+  .selected-left{
+    background: #EC5368;
+    color: white;
+  }
+}

@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons no-margin left>
+      <button padding no-margin ion-button icon-only menuToggle>
+        <ion-icon class="text-black" name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center><img class="header-icon" src="assets/img/stage-header.png"></ion-title>
+    <ion-buttons end>
+      <button padding ion-button icon-only>
+        <ion-icon class="text-black" name="ios-notifications-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div margin>
+    <div text-center class="bold-font bigger-text">Add Space</div>
+    <div margin-top padding-top class="bold-font big-text">Space Details</div>
+    <input [(ngModel)]="space.space_name" type="text" class="full-input input-line medium-text" placeholder="Space Name">
+    <input [(ngModel)]="space.description" type="text" class="full-input input-line medium-text" placeholder="Space Description">
+    <input [(ngModel)]="space.area" type="text" class="full-input input-line medium-text" placeholder="Space Area (Ex:500 square feet)">
+    <input [(ngModel)]="space.space_location" type="text" class="full-input input-line medium-text" placeholder="Space Location">
+    <div margin-top class="medium-text text-grey">Space Date</div>
+    <div class="row">
+      <div col-6 style="padding-right: 5pt !important;">
+        <ion-item no-lines no-padding margin-right>
+          <ion-datetime [(ngModel)]="space.start_date" no-margin no-padding placeholder="Start" class="select-date medium-text text-grey" min="{{startDate}}"  max="2050-12-09"  item-right displayFormat="DD-MMM-YYYY"></ion-datetime>
+          <ion-icon class="text-grey calender" item-right name="calendar"></ion-icon>
+        </ion-item>
+        <div class="saperator" padding-right></div>
+      </div>
+      <div col-6 style="padding-left: 5pt !important;">
+        <ion-item no-lines no-padding>
+          <ion-datetime [(ngModel)]="space.end_date" no-margin no-padding placeholder="End" class="select-date medium-text text-grey" min="{{startDate}}" max="2050-12-09"  item-right displayFormat="DD-MMM-YYYY"></ion-datetime>
+          <ion-icon class="text-grey calender" item-right name="calendar"></ion-icon>
+        </ion-item>
+        <div class="saperator" padding-right></div>
+      </div>
+    </div>
+
+    <div padding-top margin-top class="bold-font big-text">Space Rate</div>
+    <input [(ngModel)]="space.price" type="number" class="full-input input-line medium-text" placeholder="Space Price">
+
+    <div padding-top margin-top class="bold-font big-text">Space Owner Details</div>
+    <input [(ngModel)]="space.first_name" type="text" class="full-input input-line medium-text" placeholder="First Name">
+    <input [(ngModel)]="space.last_name" type="text" class="full-input input-line medium-text" placeholder="Last Name">
+    <input [(ngModel)]="space.mobile" type="number" maxlength="10" class="full-input input-line medium-text" placeholder="Mobile">
+    <input [(ngModel)]="space.email" type="email" class="full-input input-line medium-text" placeholder="Email">
+
+
+    <div padding-top margin-top class="big-text">Attachment</div>
+    <img class="attachment-img" *ngIf="attachmentToShow && attachmentToShow!==''" [src]="attachmentToShow">
+    <ion-item no-padding no-lines>
+      <label for="attachment">
+        <ion-icon for="attachment" *ngIf="attachmentToShow===''" class="attachment text-grey" name="md-add"></ion-icon>
+      </label>
+      <input id="attachment" class="fileInput" type="file" (change)="getAttachmentEvent($event)"/>
+    </ion-item>
+
+    <div class="btn-div" text-center>
+      <button (click)="postSpace()" ion-button round class="medium-text">Post Space</button>
+    </div>
+  </div>
+</ion-content>

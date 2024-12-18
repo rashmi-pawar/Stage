@@ -1,0 +1,57 @@
+page-event-detail {
+  .ticket{
+    height: 20pt;
+  }
+  .check{
+    font-size: 8rem;
+    color: green;
+  }
+  .item.item-block .item-inner{
+    padding: 0!important;
+  }
+  .promo-code-div{
+    border-radius: 5px;
+    margin-top: 25pt;
+  }
+  .book-ticket-div{
+    margin: 30pt 70pt;
+  }
+  .coupon{
+    height: 25px;
+    margin: 8pt !important;
+  }
+  .item.item-md .checkbox-md {
+    margin: 9px 10px 9px 4px;
+  }
+  .no-margin{
+    margin: 0!important;
+  }
+  .box{
+    margin:0 0 0 5px!important;
+    box-shadow: 2px 2px 5px 1px #e0e0e0;
+    border-radius: 5px;
+    .item-md .item-button {
+      padding: 0 0.4em!important;
+    }
+  }
+  .plus-minus{
+    font-size: 2rem!important;
+  }
+  .add-btn{
+    padding: 0 6px !important;
+  }
+  .promo-code{
+    width: 200px;
+    color: white;
+    border: none;
+    background: transparent;
+  }
+  .ticket_quantity{
+    width: 100%;
+    border: 1px solid #dedede;
+    float: right;
+  }
+  input.text-input.text-input-md {
+    text-align: center;
+}
+}

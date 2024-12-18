@@ -1,0 +1,25 @@
+page-equipment-detail {
+  .ticket{
+    height: 20pt;
+  }
+  .check{
+    font-size: 8rem;
+    color: green;
+  }
+  .item.item-block .item-inner{
+    padding: 0!important;
+  }
+  .promo-code-div{
+    border-radius: 5px;
+    margin-top: 25pt;
+  }
+  .book-div{
+    margin: 30pt 60pt;
+  }
+  .item.item-md .checkbox-md {
+    margin: 9px 10px 9px 4px;
+  }
+  .no-margin{
+    margin: 0!important;
+  }
+}
